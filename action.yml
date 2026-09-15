@@ -1,0 +1,123 @@
+name: lumioguard CC
+description: Checks what a pull request made worse. Installs the release matching this action's tag and runs lumioguard-cc check.
+author: Lumio Software FZ LLC
+
+branding:
+  icon: shield
+  color: gray-dark
+
+inputs:
+  version:
+    description: >-
+      Release to install, such as 0.1.0. Defaults to the tag this action was referenced with,
+      so `uses: lumiostack/lumioguard-cc@v0.1.0` installs 0.1.0.
+    required: false
+    default: ""
+  base:
+    description: >-
+      Git reference to compare with. On pull requests it defaults to the target branch; on other
+      events the whole project is checked. The checkout needs the full history (fetch-depth: 0).
+    required: false
+    default: ""
+  working-directory:
+    description: Folder that holds .lumioguard-cc.json.
+    required: false
+    default: "."
+  sarif-file:
+    description: >-
+      Write the findings as SARIF to this path instead of printing the summary, for
+      github/codeql-action/upload-sarif.
+    required: false
+    default: ""
+  args:
+    description: Extra arguments for `lumioguard-cc check`.
+    required: false
+    default: ""
+
+outputs:
+  exit-code:
+    description: "0 passed, 1 a blocking finding is new or worse, 2 incomplete or invalid."
+    value: ${{ steps.check.outputs.exit-code }}
+
+runs:
+  using: composite
+  steps:
+    - name: Install lumioguard-cc
+      shell: bash
+      env:
+        INPUT_VERSION: ${{ inputs.version }}
+        ACTION_REF: ${{ github.action_ref }}
+      run: |
+        set -euo pipefail
+        version="$INPUT_VERSION"
+        if [ -z "$version" ]; then
+          case "$ACTION_REF" in
+            v[0-9]*) version="${ACTION_REF#v}" ;;
+            *)
+              echo "::error::Set the 'version' input, or reference this action by a release tag such as lumiostack/lumioguard-cc@v0.1.0 (got '$ACTION_REF')"
+              exit 2 ;;
+          esac
+        fi
+        case "$(uname -s)" in
+          Linux) goos=linux ;;
+          Darwin) goos=darwin ;;
+          MINGW*|MSYS*|CYGWIN*|Windows_NT) goos=windows ;;
+          *) echo "::error::Unsupported runner OS: $(uname -s)"; exit 2 ;;
+        esac
+        case "$(uname -m)" in
+          x86_64|amd64) goarch=amd64 ;;
+          arm64|aarch64) goarch=arm64 ;;
+          *) echo "::error::Unsupported runner architecture: $(uname -m)"; exit 2 ;;
+        esac
+        name="lumioguard-cc_${version}_${goos}_${goarch}"
+        archive="$name.tar.gz"
+        if [ "$goos" = windows ]; then archive="$name.zip"; fi
+        base="https://github.com/lumiostack/lumioguard-cc/releases/download/v${version}"
+        dir="${RUNNER_TEMP:-/tmp}/lumioguard-cc"
+        mkdir -p "$dir"
+        cd "$dir"
+        curl -fsSLO "$base/$archive"
+        curl -fsSLO "$base/SHA256SUMS"
+        grep " $archive\$" SHA256SUMS | sha256sum -c -
+        if [ "$goos" = windows ]; then
+          if command -v unzip >/dev/null 2>&1; then
+            unzip -qo "$archive"
+          else
+            powershell -NoProfile -Command "Expand-Archive -Force -Path '$archive' -DestinationPath '.'"
+          fi
+        else
+          tar -xzf "$archive"
+        fi
+        echo "$dir/$name" >> "$GITHUB_PATH"
+        echo "Installed lumioguard-cc $version for $goos/$goarch"
+
+    - name: Check
+      id: check
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      env:
+        INPUT_BASE: ${{ inputs.base }}
+        TARGET_BRANCH: ${{ github.base_ref }}
+        SARIF_FILE: ${{ inputs.sarif-file }}
+        EXTRA_ARGS: ${{ inputs.args }}
+      run: |
+        set -uo pipefail
+        base="$INPUT_BASE"
+        if [ -z "$base" ] && [ -n "$TARGET_BRANCH" ]; then
+          base="origin/$TARGET_BRANCH"
+        fi
+        args=()
+        if [ -n "$base" ]; then
+          args+=(--base "$base")
+        fi
+        # shellcheck disable=SC2206
+        args+=($EXTRA_ARGS)
+        code=0
+        if [ -n "$SARIF_FILE" ]; then
+          lumioguard-cc check "${args[@]}" --format sarif > "$SARIF_FILE" || code=$?
+          echo "Wrote $SARIF_FILE (exit code $code: 0 passed, 1 failed, 2 incomplete)"
+        else
+          lumioguard-cc check "${args[@]}" || code=$?
+        fi
+        echo "exit-code=$code" >> "$GITHUB_OUTPUT"
+        exit "$code"

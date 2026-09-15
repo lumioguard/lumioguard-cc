@@ -1,0 +1,92 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+      - name: Build
+        shell: bash
+        run: go build ./...
+      - name: Vet
+        shell: bash
+        # The generated Java parser ends every rule with an unreachable goto; golangci-lint
+        # still checks our own code for unreachable statements.
+        run: go vet -unreachable=false ./...
+      - name: Test
+        shell: bash
+        run: go test ./...
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+      - name: Check formatting
+        run: |
+          unformatted="$(gofmt -l .)"
+          if [ -n "$unformatted" ]; then
+            echo "These files need gofmt:"
+            echo "$unformatted"
+            exit 1
+          fi
+      - uses: golangci/golangci-lint-action@v9
+        with:
+          version: v2.13.2
+
+  checks:
+    name: Supply chain and examples
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+          fetch-depth: 0            # the self-check compares with the target branch
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+      - name: Third-party notices are current
+        run: go run ./tools/third-party-notices -check
+      - name: Known vulnerabilities in linked modules
+        run: go run golang.org/x/vuln/cmd/govulncheck@latest ./...
+      - name: Known vulnerabilities in copied upstreams
+        run: go run ./tools/third-party-audit
+      - name: Build the binary
+        run: go build -o bin/lumioguard-cc ./cmd/lumioguard-cc
+      - name: Worked examples
+        run: sh .examples/run.sh bin/lumioguard-cc
+      - name: Check this repository with the tool
+        if: github.event_name == 'pull_request'
+        env:
+          TARGET: ${{ github.base_ref }}
+        run: bin/lumioguard-cc check --base "origin/$TARGET"

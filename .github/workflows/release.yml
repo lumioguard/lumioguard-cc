@@ -1,0 +1,76 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+
+      - name: Verify before publishing
+        run: |
+          go test ./...
+          go run ./tools/third-party-notices -check
+          go run golang.org/x/vuln/cmd/govulncheck@latest ./...
+          go run ./tools/third-party-audit
+
+      - name: Build archives for every platform
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          version="${TAG#v}"
+          mkdir -p release stage
+          for target in linux/amd64 linux/arm64 darwin/amd64 darwin/arm64 windows/amd64 windows/arm64; do
+            goos="${target%/*}"
+            goarch="${target#*/}"
+            name="lumioguard-cc_${version}_${goos}_${goarch}"
+            ext=""
+            if [ "$goos" = windows ]; then ext=".exe"; fi
+            mkdir -p "stage/$name"
+            CGO_ENABLED=0 GOOS="$goos" GOARCH="$goarch" go build -trimpath \
+              -ldflags "-s -w -X github.com/lumiostack/lumioguard-cc/internal/product.Version=${version}" \
+              -o "stage/$name/lumioguard-cc${ext}" ./cmd/lumioguard-cc
+            # The dependencies' licences require their notices to ship with every binary.
+            cp LICENSE README.md THIRD-PARTY-NOTICES.md "stage/$name/"
+            if [ "$goos" = windows ]; then
+              (cd stage && zip -qr "../release/$name.zip" "$name")
+            else
+              tar -czf "release/$name.tar.gz" -C stage "$name"
+            fi
+          done
+          (cd release && sha256sum -- * > SHA256SUMS)
+
+      - name: Take release notes from the changelog
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          awk -v version="${TAG#v}" '
+            index($0, "## " version) == 1 || index($0, "## [" version "]") == 1 { found = 1; next }
+            found && /^## / { exit }
+            found { print }
+          ' CHANGELOG.md > notes.md
+          if [ ! -s notes.md ]; then echo "See CHANGELOG.md." > notes.md; fi
+
+      - name: Publish the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          prerelease=""
+          case "$TAG" in *-*) prerelease="--prerelease" ;; esac
+          gh release create "$TAG" release/* --repo "$GITHUB_REPOSITORY" --verify-tag \
+            --title "lumioguard CC $TAG" --notes-file notes.md $prerelease
