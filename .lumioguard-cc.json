@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "1.0",
+  "source": {
+    "include": ["**/*.go"],
+    "exclude": [
+      "**/.git/**",
+      "**/.lumioguard-cc/**",
+      "**/testdata/**",
+      "internal/thirdparty/**",
+      "internal/adapter/java/syntax/**",
+      "bin/**",
+      "dist/**",
+      ".examples/**",
+      ".venv/**",
+      "reference/**"
+    ]
+  },
+  "metrics": {
+    "cyclomatic": { "enabled": true, "threshold": 12, "severity": "warning", "block": true },
+    "cognitive": { "enabled": true, "threshold": 15, "severity": "warning", "block": true },
+    "nestingDepth": { "enabled": true, "threshold": 4, "severity": "warning", "block": true },
+    "functionLines": { "enabled": true, "threshold": 80, "severity": "warning", "block": true },
+    "parameterCount": { "enabled": true, "threshold": 5, "severity": "warning", "block": true },
+    "fileTokens": { "enabled": true, "threshold": 4000, "severity": "warning", "block": true },
+    "duplicationPercent": { "enabled": true, "threshold": 5, "severity": "warning", "block": true, "minTokens": 50, "minLines": 5 },
+    "fanOut": { "enabled": true, "threshold": 20, "severity": "warning", "block": true }
+  },
+  "architecture": {
+    "boundaries": [
+      { "name": "domain", "include": ["internal/domain/**"], "mayDependOn": ["domain"] },
+      { "name": "structure", "include": ["internal/adapter/structure/**"], "mayDependOn": ["domain", "structure"] },
+      { "name": "typescript", "include": ["internal/adapter/typescript/**"], "mayDependOn": ["domain", "structure", "adapter", "typescript"] },
+      { "name": "python", "include": ["internal/adapter/python/**"], "mayDependOn": ["domain", "structure", "adapter", "python"] },
+      { "name": "java", "include": ["internal/adapter/java/**"], "mayDependOn": ["domain", "structure", "adapter", "java"] },
+      { "name": "go", "include": ["internal/adapter/golang/**"], "mayDependOn": ["domain", "structure", "adapter", "go"] },
+      { "name": "adapter", "include": ["internal/adapter/**"], "mayDependOn": ["domain", "adapter"] },
+      { "name": "engine", "include": ["internal/engine/**"], "mayDependOn": ["domain", "adapter", "typescript", "python", "java", "go", "engine"] }
+    ],
+    "blockCycles": true,
+    "blockViolations": true
+  },
+  "coverage": { "lcovFile": null, "required": false }
+}

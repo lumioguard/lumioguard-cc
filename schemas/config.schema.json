@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/lumiostack/lumioguard-cc/main/schemas/config.schema.json",
+  "title": "lumioguard CC configuration",
+  "type": "object",
+  "required": ["schemaVersion", "source", "metrics", "architecture", "coverage"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "source": {
+      "type": "object",
+      "required": ["include", "exclude"],
+      "properties": {
+        "include": { "$ref": "#/$defs/stringArray" },
+        "exclude": { "$ref": "#/$defs/stringArray" }
+      },
+      "additionalProperties": false
+    },
+    "metrics": {
+      "type": "object",
+      "required": ["cyclomatic", "cognitive", "nestingDepth", "functionLines", "parameterCount", "fileTokens", "duplicationPercent", "fanOut"],
+      "properties": {
+        "cyclomatic": { "$ref": "#/$defs/policy" },
+        "cognitive": { "$ref": "#/$defs/policy" },
+        "nestingDepth": { "$ref": "#/$defs/policy" },
+        "functionLines": { "$ref": "#/$defs/policy" },
+        "parameterCount": { "$ref": "#/$defs/policy" },
+        "fileTokens": { "$ref": "#/$defs/policy" },
+        "fanOut": { "$ref": "#/$defs/policy" },
+        "duplicationPercent": {
+          "type": "object",
+          "required": ["enabled", "threshold", "severity", "block", "minTokens", "minLines"],
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "threshold": { "type": "number", "minimum": 0 },
+            "severity": { "enum": ["info", "warning", "error"] },
+            "block": { "type": "boolean" },
+            "minTokens": { "type": "integer", "minimum": 1 },
+            "minLines": { "type": "integer", "minimum": 1 }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "architecture": {
+      "type": "object",
+      "required": ["boundaries", "blockCycles", "blockViolations"],
+      "properties": {
+        "boundaries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "include", "mayDependOn"],
+            "properties": {
+              "name": { "type": "string", "minLength": 1 },
+              "include": { "$ref": "#/$defs/stringArray" },
+              "mayDependOn": { "$ref": "#/$defs/stringArray" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "blockCycles": { "type": "boolean" },
+        "blockViolations": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "coverage": {
+      "type": "object",
+      "required": ["lcovFile", "required"],
+      "properties": {
+        "lcovFile": { "type": ["string", "null"] },
+        "required": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "stringArray": { "type": "array", "items": { "type": "string" } },
+    "policy": {
+      "type": "object",
+      "required": ["enabled", "threshold", "severity", "block"],
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "threshold": { "type": "number", "minimum": 0 },
+        "severity": { "enum": ["info", "warning", "error"] },
+        "block": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/lumiostack/lumioguard-cc/main/schemas/baseline.schema.json",
+  "title": "lumioguard CC baseline",
+  "type": "object",
+  "required": ["schemaVersion", "name", "createdAt", "toolVersion", "snapshot", "adapters", "measurements", "findings", "diagnostics"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "name": { "type": "string" },
+    "createdAt": { "type": "string" },
+    "toolVersion": { "type": "string" },
+    "snapshot": { "$ref": "report.schema.json#/$defs/snapshot" },
+    "adapters": { "type": "array", "items": { "$ref": "report.schema.json#/$defs/adapter" } },
+    "measurements": { "type": "array", "items": { "$ref": "report.schema.json#/$defs/measurement" } },
+    "findings": { "type": "array", "items": { "$ref": "report.schema.json#/$defs/finding" } },
+    "diagnostics": { "type": "array", "items": { "$ref": "report.schema.json#/$defs/diagnostic" } }
+  },
+  "additionalProperties": false
+}

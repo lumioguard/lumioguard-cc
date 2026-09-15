@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/lumiostack/lumioguard-cc/main/schemas/report.schema.json",
+  "title": "lumioguard CC analysis report",
+  "type": "object",
+  "required": ["schemaVersion", "tool", "run", "snapshot", "comparison", "scope", "adapters", "measurements", "findings", "diagnostics", "exclusions", "policy"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "tool": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": { "name": { "type": "string" }, "version": { "type": "string" } },
+      "additionalProperties": false
+    },
+    "run": {
+      "type": "object",
+      "required": ["id", "createdAt", "durationMs"],
+      "properties": {
+        "id": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "durationMs": { "type": "number", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "snapshot": { "$ref": "#/$defs/snapshot" },
+    "comparison": {
+      "type": "object",
+      "required": ["mode", "reference", "comparable"],
+      "properties": {
+        "mode": { "enum": ["none", "baseline", "git"] },
+        "reference": { "type": ["string", "null"] },
+        "comparable": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "scope": {
+      "type": "object",
+      "required": ["filesDiscovered", "filesAnalyzed", "languages"],
+      "properties": {
+        "filesDiscovered": { "type": "integer", "minimum": 0 },
+        "filesAnalyzed": { "type": "integer", "minimum": 0 },
+        "languages": { "type": "object", "additionalProperties": { "type": "integer" } }
+      },
+      "additionalProperties": false
+    },
+    "adapters": { "type": "array", "items": { "$ref": "#/$defs/adapter" } },
+    "measurements": { "type": "array", "items": { "$ref": "#/$defs/measurement" } },
+    "findings": { "type": "array", "items": { "$ref": "#/$defs/finding" } },
+    "diagnostics": { "type": "array", "items": { "$ref": "#/$defs/diagnostic" } },
+    "exclusions": {
+      "type": "object",
+      "required": ["patterns", "excludedDirectories", "excludedFiles"],
+      "properties": {
+        "patterns": { "type": "array", "items": { "type": "string" } },
+        "excludedDirectories": { "type": "integer", "minimum": 0 },
+        "excludedFiles": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "policy": {
+      "type": "object",
+      "required": ["status", "blockingFindings", "warningFindings"],
+      "properties": {
+        "status": { "enum": ["passed", "failed", "incomplete"] },
+        "blockingFindings": { "type": "integer", "minimum": 0 },
+        "warningFindings": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "scope": {
+      "type": "object",
+      "required": ["kind", "key"],
+      "properties": {
+        "kind": { "enum": ["repository", "file", "function", "cycle", "dependency"] },
+        "file": { "type": "string" },
+        "symbol": { "type": "string" },
+        "line": { "type": "integer", "minimum": 1 },
+        "endLine": { "type": "integer", "minimum": 1 },
+        "key": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "adapter": {
+      "type": "object",
+      "required": ["id", "version", "languages", "analyzers", "filesAnalyzed", "complete"],
+      "properties": {
+        "id": { "type": "string" },
+        "version": { "type": "string" },
+        "languages": { "type": "array", "items": { "type": "string" } },
+        "analyzers": { "type": "object", "additionalProperties": { "type": "string" } },
+        "filesAnalyzed": { "type": "integer", "minimum": 0 },
+        "complete": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "measurement": {
+      "type": "object",
+      "required": ["metricId", "variant", "category", "scope", "value", "unit", "status"],
+      "properties": {
+        "metricId": { "type": "string" },
+        "variant": { "type": "string" },
+        "category": { "enum": ["complexity", "size", "coupling", "duplication", "coverage"] },
+        "scope": { "$ref": "#/$defs/scope" },
+        "value": { "type": ["number", "null"] },
+        "unit": { "enum": ["count", "lines", "percent"] },
+        "status": { "enum": ["measured", "not_applicable", "unavailable"] },
+        "reason": { "type": "string" },
+        "baseline": { "type": ["number", "null"] },
+        "delta": { "type": ["number", "null"] },
+        "classification": { "enum": ["new", "existing", "worsened", "improved"] },
+        "evidence": { "type": "object" }
+      },
+      "additionalProperties": false
+    },
+    "finding": {
+      "type": "object",
+      "required": ["id", "ruleId", "title", "severity", "blocking", "scope", "message", "classification", "current", "baseline", "delta", "threshold", "unit", "evidence", "recheck"],
+      "properties": {
+        "id": { "type": "string" },
+        "ruleId": { "type": "string" },
+        "title": { "type": "string" },
+        "severity": { "enum": ["info", "warning", "error"] },
+        "blocking": { "type": "boolean" },
+        "scope": { "$ref": "#/$defs/scope" },
+        "message": { "type": "string" },
+        "classification": { "enum": ["new", "existing", "worsened", "improved", "resolved"] },
+        "current": { "type": ["number", "null"] },
+        "baseline": { "type": ["number", "null"] },
+        "delta": { "type": ["number", "null"] },
+        "threshold": { "type": ["number", "null"] },
+        "unit": { "enum": ["count", "lines", "percent", "violation"] },
+        "evidence": { "type": "object" },
+        "recheck": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "diagnostic": {
+      "type": "object",
+      "required": ["code", "severity", "message", "required"],
+      "properties": {
+        "code": { "type": "string" },
+        "severity": { "enum": ["info", "warning", "error"] },
+        "message": { "type": "string" },
+        "file": { "type": "string" },
+        "required": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "snapshot": {
+      "type": "object",
+      "required": ["id", "kind", "root", "sourceHash", "fileHashes", "configHash", "git"],
+      "properties": {
+        "id": { "type": "string" },
+        "kind": { "enum": ["working-tree", "baseline"] },
+        "root": { "type": "string" },
+        "sourceHash": { "type": "string" },
+        "fileHashes": { "type": "object", "additionalProperties": { "type": "string" } },
+        "configHash": { "type": "string" },
+        "git": {
+          "type": "object",
+          "required": ["available", "commit", "dirty"],
+          "properties": {
+            "available": { "type": "boolean" },
+            "commit": { "type": ["string", "null"] },
+            "dirty": { "type": ["boolean", "null"] },
+            "baseCommit": { "type": ["string", "null"] }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
