@@ -1,0 +1,1 @@
+"""Warehouse inventory example."""

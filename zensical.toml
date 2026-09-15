@@ -1,0 +1,118 @@
+# Documentation site: `make docs` builds it, `make docs-serve` previews it.
+# Zensical skips dot folders, so the build copies .documentations to dist/docs-src first.
+[project]
+site_name = "lumioguard CC"
+site_description = "Sits in the coding agent loop and keeps AI-written code clean as the project grows."
+site_url = "https://lumiostack.github.io/lumioguard-cc/"
+repo_url = "https://github.com/lumiostack/lumioguard-cc"
+repo_name = "lumiostack/lumioguard-cc"
+edit_uri = "edit/main/.documentations/"
+copyright = "Maintained by Lumio Software FZ LLC · <a href=\"https://lumioguard.dev\">lumioguard.dev</a>"
+docs_dir = "dist/docs-src"
+site_dir = "dist/site"
+extra_css = ["assets/stylesheets/lumioguard.css"]
+
+nav = [
+  { "Home" = "index.md" },
+  { "Get started" = [
+    "get-started/index.md",
+    { "Install" = "get-started/install.md" },
+    { "Quick start" = "get-started/quick-start.md" },
+    { "Key ideas" = "get-started/key-ideas.md" },
+  ] },
+  { "Guides" = [
+    "guides/index.md",
+    { "Check your changes" = "guides/check-changes.md" },
+    { "Coding agents" = "guides/coding-agents.md" },
+    { "Pull requests and CI" = "guides/ci.md" },
+    { "Clean up existing code" = "guides/clean-up.md" },
+    { "Stored baselines" = "guides/baselines.md" },
+  ] },
+  { "Rules" = [
+    "rules/index.md",
+    { "Complexity" = "rules/complexity.md" },
+    { "Size" = "rules/size.md" },
+    { "Duplication" = "rules/duplication.md" },
+    { "Dependencies" = "rules/dependencies.md" },
+    { "Architecture boundaries" = "rules/boundaries.md" },
+    { "Test coverage" = "rules/coverage.md" },
+  ] },
+  { "Reference" = [
+    "reference/index.md",
+    { "Commands" = "reference/commands.md" },
+    { "Configuration" = "reference/configuration.md" },
+    { "Results and report" = "reference/results.md" },
+    { "Languages and limits" = "reference/languages.md" },
+    { "How it works" = "reference/how-it-works.md" },
+  ] },
+  { "Help" = [
+    "help/index.md",
+    { "Troubleshooting" = "help/troubleshooting.md" },
+    { "FAQ" = "help/faq.md" },
+  ] },
+  { "Contribute" = [
+    "contributing/index.md",
+    { "Development guide" = "contributing/development.md" },
+  ] },
+]
+
+[project.theme]
+language = "en"
+logo = "assets/images/lumioguard-shield.svg"
+favicon = "assets/images/lumioguard-shield.svg"
+features = [
+  "content.code.copy",
+  "content.action.edit",
+  "content.tabs.link",
+  "navigation.footer",
+  "navigation.indexes",
+  "navigation.instant",
+  "navigation.path",
+  "navigation.sections",
+  "navigation.tabs",
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight",
+  "toc.follow",
+]
+
+[project.theme.font]
+text = "Geist"
+code = "Geist Mono"
+
+[project.theme.icon]
+repo = "fontawesome/brands/github"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to light mode"
+
+[project.markdown_extensions]
+admonition = {}
+attr_list = {}
+def_list = {}
+md_in_html = {}
+tables = {}
+toc.permalink = true
+pymdownx.details = {}
+pymdownx.emoji.emoji_generator = "zensical.extensions.emoji.to_svg"
+pymdownx.emoji.emoji_index = "zensical.extensions.emoji.twemoji"
+pymdownx.highlight.pygments_lang_class = true
+pymdownx.inlinehilite = {}
+pymdownx.superfences.custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+pymdownx.tabbed.alternate_style = true
+pymdownx.tabbed.combine_header_slug = true

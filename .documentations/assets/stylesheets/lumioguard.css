@@ -1,0 +1,189 @@
+/* Neutral palette: black and grays for the interface. Orange stays in the shield only,
+   so it never reads as a warning. */
+[data-md-color-scheme="default"] {
+  --lg-strong: #111111;
+  --lg-strong-hover: #333333;
+  --lg-muted: #6b6b6b;
+  --lg-border: #d9d9d9;
+  --lg-border-hover: #a3a3a3;
+  --lg-soft: #f5f5f5;
+  --lg-on-strong: #ffffff;
+}
+
+[data-md-color-scheme="slate"] {
+  --lg-strong: #f5f5f5;
+  --lg-strong-hover: #d4d4d4;
+  --lg-muted: #a3a3a3;
+  --lg-border: #3a3a3f;
+  --lg-border-hover: #71717a;
+  --lg-soft: #1c1c20;
+  --lg-on-strong: #0a0a0a;
+}
+
+[data-md-color-primary="custom"] {
+  --md-primary-fg-color: var(--lg-strong);
+  --md-primary-fg-color--light: var(--lg-muted);
+  --md-primary-fg-color--dark: var(--lg-strong);
+  --md-primary-bg-color: var(--lg-on-strong);
+  --md-primary-bg-color--light: var(--lg-muted);
+}
+
+[data-md-color-accent="custom"] {
+  --md-accent-fg-color: var(--lg-strong);
+  --md-accent-fg-color--transparent: #8080801a;
+  --md-accent-bg-color: var(--lg-on-strong);
+}
+
+[data-md-color-scheme] {
+  --md-typeset-a-color: var(--lg-strong);
+  --md-mermaid-node-bg-color: var(--lg-soft);
+  --md-mermaid-node-fg-color: var(--lg-muted);
+}
+
+/* Links: dark and underlined, so they stand out without colour. */
+.md-typeset a {
+  text-decoration: underline;
+  text-decoration-color: var(--lg-border-hover);
+  text-underline-offset: 0.2em;
+}
+
+.md-typeset a:hover,
+.md-typeset a:focus {
+  color: var(--lg-strong);
+  text-decoration-color: var(--lg-strong);
+}
+
+.md-nav__link--active,
+.md-nav__item .md-nav__link--active code {
+  color: var(--lg-strong);
+  font-weight: 600;
+}
+
+/* Buttons: black for the main action, outlined gray for the rest. */
+.md-typeset .md-button {
+  color: var(--lg-strong);
+  background-color: transparent;
+  border: 0.05rem solid var(--lg-border);
+  text-decoration: none;
+}
+
+.md-typeset .md-button:hover,
+.md-typeset .md-button:focus {
+  color: var(--lg-strong);
+  background-color: var(--lg-soft);
+  border-color: var(--lg-border-hover);
+  opacity: 1;
+}
+
+.md-typeset .md-button--primary {
+  color: var(--lg-on-strong);
+  background-color: var(--lg-strong);
+  border-color: var(--lg-strong);
+}
+
+.md-typeset .md-button--primary:hover,
+.md-typeset .md-button--primary:focus {
+  color: var(--lg-on-strong);
+  background-color: var(--lg-strong-hover);
+  border-color: var(--lg-strong-hover);
+}
+
+/* Home page hero. */
+.lg-hero {
+  text-align: center;
+  padding: 1.5rem 0 1rem;
+}
+
+.lg-hero__logo {
+  width: 5.5rem;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.md-typeset .lg-hero h1 {
+  margin: 0 0 0.4rem;
+  font-weight: 700;
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset .lg-hero__lead {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  margin: 0 auto 0.6rem;
+  max-width: 34rem;
+}
+
+.md-typeset .lg-hero__text {
+  max-width: 38rem;
+  margin: 0 auto 1.2rem;
+  color: var(--md-default-fg-color--light);
+}
+
+.md-typeset .lg-hero .md-button {
+  margin: 0.25rem;
+}
+
+/* Cards: a quiet border that darkens on hover. */
+.md-typeset .grid.cards > ul > li,
+.md-typeset .grid > .card {
+  border: 0.05rem solid var(--lg-border);
+  border-radius: 0.6rem;
+  transition: border-color 150ms, box-shadow 150ms;
+}
+
+.md-typeset .grid.cards > ul > li:hover,
+.md-typeset .grid > .card:hover {
+  border-color: var(--lg-border-hover);
+  box-shadow: 0 0.2rem 0.8rem #0000000f;
+}
+
+.md-typeset .grid.cards > ul > li > hr {
+  border-color: var(--lg-border);
+}
+
+/* Four cards read better as two rows of two. */
+.md-typeset .grid.lg-two {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+}
+
+@media screen and (min-width: 76.25em) {
+  .md-typeset .grid.lg-two {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.md-typeset .lg-icon {
+  color: var(--lg-strong);
+}
+
+/* "At a glance" boxes at the top of reference pages. */
+.md-typeset .lg-summary {
+  background: var(--lg-soft);
+  border: 0.05rem solid var(--lg-border);
+  border-radius: 0.5rem;
+  padding: 0.6rem 1rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.md-typeset .lg-summary > :first-child {
+  margin-top: 0;
+}
+
+.md-typeset .lg-summary > :last-child {
+  margin-bottom: 0;
+}
+
+.md-typeset .lg-summary table:not([class]) {
+  margin: 0;
+  border: none;
+  background: transparent;
+}
+
+/* Keep wide tables readable, and rule IDs and file names on one line. */
+.md-typeset table:not([class]) {
+  font-size: 0.72rem;
+}
+
+.md-typeset table:not([class]) code {
+  white-space: nowrap;
+}

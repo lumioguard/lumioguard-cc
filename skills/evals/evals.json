@@ -1,0 +1,55 @@
+{
+  "skill_name": "lumioguard-cc",
+  "evals": [
+    {
+      "id": 1,
+      "name": "setup-install-and-wire-claude",
+      "prompt": "install lumioguard CC in this project and set it up so claude code checks its own work before it finishes",
+      "expected_output": "The CLI is installed from a verified download, .lumioguard-cc.json is created and tailored, boundaries follow the folder layers, the Claude Code Stop hook is added with a path that resolves, the cache is git-ignored, and the current numbers are reported without touching source code.",
+      "files": ["Sample project: .examples/python-inventory/after, committed to Git, with .lumioguard-cc.json removed and the CLI not installed"],
+      "expectations": [
+        "The CLI is installed and reports its version",
+        "A .lumioguard-cc.json exists and is valid (check completes with exit 0 or 1)",
+        "Architecture boundaries cover the domain and persistence layers",
+        "Project .claude/settings.json has a Stop hook running `lumioguard-cc hook claude-stop`",
+        "The hook command points at the installed binary when it is not on PATH",
+        "`.lumioguard-cc/cache/` is git-ignored",
+        "No source files were modified",
+        "The download was verified against SHA256SUMS",
+        "The final message reports current numbers from a check"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "loop-add-platinum-tier",
+      "prompt": "add a platinum customer tier. platinum customers get 15% off every order, free express shipping on orders over $200, and are tax exempt when they have a tax id on file. keep it consistent with how the other tiers work",
+      "expected_output": "The feature is implemented and proven with lumioguard-cc check --base HEAD, with no new or worsened findings and the configuration untouched.",
+      "files": ["Sample project: .examples/typescript-order-service/after, committed to Git, CLI installed"],
+      "expectations": [
+        "A platinum tier is implemented in the TypeScript source",
+        "The final code passes `lumioguard-cc check --base HEAD` (exit 0)",
+        "No new or worsened findings of any kind compared with HEAD",
+        "The agent ran `lumioguard-cc check` with `--base` during the task",
+        ".lumioguard-cc.json was not changed",
+        "No stored baseline was created"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "cleanup-order-service",
+      "prompt": "this order service has turned into a mess and nobody wants to touch it. can you clean it up using lumioguard-cc? don't change what it does",
+      "expected_output": "Blocking findings substantially reduced with nothing new or worse, configuration untouched, public entry point preserved, and a before-and-after report built from real check output.",
+      "files": ["Sample project: .examples/typescript-order-service/before, committed to Git, CLI installed. Behaviour is compared by running processOrder from the original and the result with Bun over a grid of inputs."],
+      "expectations": [
+        "Blocking findings reduced below the starting 16",
+        "Blocking findings reduced by at least half (8 or fewer)",
+        "All files still analyzed: no parse failures or incomplete result",
+        "No new or worsened blocking findings compared with the starting commit",
+        ".lumioguard-cc.json unchanged since the starting commit",
+        "The public entry point processOrder is still exported from src/api/handler.ts",
+        "processOrder, called as before, gives the same results, saved orders and emails as the original across 20,160 input combinations",
+        "The final report gives before and after numbers"
+      ]
+    }
+  ]
+}
