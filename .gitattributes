@@ -1,0 +1,5 @@
+# LF everywhere, so file hashes and line counts match on every platform.
+* text=auto eol=lf
+
+*.gz binary
+*.exe binary

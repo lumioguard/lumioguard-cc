@@ -1,0 +1,41 @@
+# Local notes. Published documentation lives in .documentations/.
+/docs/
+CLAUDE.local.md
+
+# Build outputs
+/bin/
+/.cache/
+.venv/
+/dist/
+*.exe
+*.test
+*.out
+*.prof
+*.pid
+
+# Coverage and benchmark artifacts
+/coverage/
+/coverage.*
+*.lcov
+
+# lumioguard CC state: reviewed baselines are committed, caches are not
+.lumioguard-cc/cache/
+
+# Language build artifacts inside the worked examples
+__pycache__/
+*.pyc
+*.class
+
+# Archives
+*.tgz
+*.zip
+
+# Editors and operating systems
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Local reference material
+/reference/

@@ -1,0 +1,46 @@
+version: "2"
+
+run:
+  timeout: 5m
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+
+linters:
+  default: standard
+  enable:
+    - misspell
+    - revive
+    - gocritic
+    - unconvert
+    - unparam
+  settings:
+    errcheck:
+      # Terminal and in-memory writes; a failed print has no useful recovery.
+      exclude-functions:
+        - fmt.Fprint
+        - fmt.Fprintf
+        - fmt.Fprintln
+  exclusions:
+    paths:
+      - internal/thirdparty/tsgo
+      - internal/adapter/java/syntax
+    rules:
+      - path: _test\.go
+        linters:
+          - gocritic
+          - unparam
+
+formatters:
+  enable:
+    - gofmt
+    - goimports
+  settings:
+    goimports:
+      local-prefixes:
+        - github.com/lumiostack/lumioguard-cc
+  exclusions:
+    paths:
+      - internal/thirdparty/tsgo
+      - internal/adapter/java/syntax
