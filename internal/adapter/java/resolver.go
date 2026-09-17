@@ -5,8 +5,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
-	"github.com/lumiostack/lumioguard-cc/internal/paths"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/paths"
 )
 
 // Resolver implements adapter.ImportResolver keyed on package declarations, so any

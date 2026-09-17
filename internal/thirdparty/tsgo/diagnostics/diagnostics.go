@@ -15,8 +15,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/core"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/locale"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/core"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/locale"
 	"golang.org/x/text/language"
 )
 

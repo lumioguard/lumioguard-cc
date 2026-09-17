@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
 )
 
 // Record is a function with the scope that names it. The symbol itself lives

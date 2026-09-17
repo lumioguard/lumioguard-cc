@@ -14,10 +14,10 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/collections"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/core"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/spanmap"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/tspath"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/collections"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/core"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/spanmap"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/tspath"
 	"github.com/zeebo/xxh3"
 )
 

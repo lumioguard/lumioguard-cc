@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/engine"
-	"github.com/lumiostack/lumioguard-cc/internal/product"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/engine"
+	"github.com/lumioguard/lumioguard-cc/internal/product"
 )
 
 // ErrConflictingReferences rejects a check that names two comparison points.

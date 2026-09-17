@@ -5,7 +5,7 @@ hard code is to change and whether a change made it worse. It supports JavaScrip
 Python, Java and Go, runs offline, and never runs the code it analyzes. It checks its own code
 through the root `.lumioguard-cc.json`: run `bin/lumioguard-cc check --base HEAD` before finishing.
 
-Binary `lumioguard-cc`, config `.lumioguard-cc.json`, module `github.com/lumiostack/lumioguard-cc`.
+Binary `lumioguard-cc`, config `.lumioguard-cc.json`, module `github.com/lumioguard/lumioguard-cc`.
 Read [Development](.documentations/contributing/development.md) before changing code.
 
 ## Commands

@@ -29,9 +29,9 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/collections"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/json"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/repo"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/collections"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/json"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/repo"
 	"golang.org/x/text/language"
 )
 
@@ -193,7 +193,7 @@ func generateLocalizations(knownKeys map[string]bool, locDir string) *bytes.Buff
 	buf.WriteString("\t\"strings\"\n")
 	buf.WriteString("\t\"sync\"\n")
 	buf.WriteString("\t\"golang.org/x/text/language\"\n")
-	buf.WriteString("\t\"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/json\"\n")
+	buf.WriteString("\t\"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/json\"\n")
 	buf.WriteString(")\n")
 
 	// Remove and recreate the loc directory for a clean state

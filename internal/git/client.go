@@ -9,7 +9,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
 )
 
 // Client runs read-only queries with the git executable. Tests substitute

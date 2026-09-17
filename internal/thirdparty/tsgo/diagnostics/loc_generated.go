@@ -15,7 +15,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/json"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/json"
 	"golang.org/x/text/language"
 )
 

@@ -10,9 +10,9 @@ const (
 	// Tagline is a one-line description used in help output.
 	Tagline = "keeps AI-written code clean as the project grows"
 	// RepositoryURL is the public source repository.
-	RepositoryURL = "https://github.com/lumiostack/lumioguard-cc"
+	RepositoryURL = "https://github.com/lumioguard/lumioguard-cc"
 	// DocumentationURL is the published documentation site, with a trailing slash.
-	DocumentationURL = "https://lumiostack.github.io/lumioguard-cc/"
+	DocumentationURL = "https://cc-docs.lumioguard.dev/"
 
 	// ConfigFileName is the repository-level configuration file.
 	ConfigFileName = ".lumioguard-cc.json"
@@ -52,5 +52,5 @@ func RecheckCommandFor(program, baselineName, gitBase string) string {
 }
 
 // Version is the tool version. Release builds may override it with
-// -ldflags "-X github.com/lumiostack/lumioguard-cc/internal/product.Version=x.y.z".
+// -ldflags "-X github.com/lumioguard/lumioguard-cc/internal/product.Version=x.y.z".
 var Version = "0.1.0"

@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/product"
-	"github.com/lumiostack/lumioguard-cc/internal/worklist"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/product"
+	"github.com/lumioguard/lumioguard-cc/internal/worklist"
 )
 
 // WorklistText renders a worklist for a terminal: one line per place, with

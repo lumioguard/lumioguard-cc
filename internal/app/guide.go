@@ -3,8 +3,8 @@ package app
 import (
 	"fmt"
 
-	"github.com/lumiostack/lumioguard-cc/internal/guide"
-	"github.com/lumiostack/lumioguard-cc/internal/product"
+	"github.com/lumioguard/lumioguard-cc/internal/guide"
+	"github.com/lumioguard/lumioguard-cc/internal/product"
 )
 
 // GuideService serves the task guides for the installed version.

@@ -10,7 +10,7 @@ package ast
 import (
 	"unicode/utf8"
 
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/stringutil"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/stringutil"
 )
 
 // PositionMap provides bidirectional mapping between UTF-8 byte offsets (used by Go)

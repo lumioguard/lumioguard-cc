@@ -13,14 +13,14 @@ import (
 	"sync"
 	"unicode/utf8"
 
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/ast"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/collections"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/core"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/debug"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/diagnostics"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/scanner"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/stringutil"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/tspath"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/ast"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/collections"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/core"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/debug"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/diagnostics"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/scanner"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/stringutil"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/tspath"
 )
 
 type ParsingContext int

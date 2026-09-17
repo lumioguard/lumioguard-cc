@@ -11,10 +11,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/ast"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/core"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/diagnostics"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/scanner"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/ast"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/core"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/diagnostics"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/scanner"
 )
 
 func (p *Parser) finishReparsedNode(node *ast.Node, locationNode *ast.Node) {

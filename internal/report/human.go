@@ -5,8 +5,8 @@ import (
 	"io"
 	"strings"
 
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/product"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/product"
 )
 
 // findingLimit caps how many findings and diagnostics a terminal summary lists.

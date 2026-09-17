@@ -7,7 +7,7 @@
 
 package core
 
-import "github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/tspath"
+import "github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/tspath"
 
 type ProjectReference struct {
 	// Path is a normalized path on disk.

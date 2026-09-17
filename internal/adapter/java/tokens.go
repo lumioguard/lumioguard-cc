@@ -5,9 +5,9 @@ import (
 
 	"github.com/antlr4-go/antlr/v4"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/java/syntax"
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/sourcetext"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/java/syntax"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/sourcetext"
 )
 
 // tokenize converts the lexer output into clone-detection tokens (default

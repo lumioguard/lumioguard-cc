@@ -11,13 +11,13 @@ import (
 
 	"github.com/santhosh-tekuri/jsonschema/v6"
 
-	"github.com/lumiostack/lumioguard-cc/internal/app"
-	"github.com/lumiostack/lumioguard-cc/internal/baseline"
-	"github.com/lumiostack/lumioguard-cc/internal/compose"
-	"github.com/lumiostack/lumioguard-cc/internal/config"
+	"github.com/lumioguard/lumioguard-cc/internal/app"
+	"github.com/lumioguard/lumioguard-cc/internal/baseline"
+	"github.com/lumioguard/lumioguard-cc/internal/compose"
+	"github.com/lumioguard/lumioguard-cc/internal/config"
 )
 
-const base = "https://raw.githubusercontent.com/lumiostack/lumioguard-cc/main/schemas/"
+const base = "https://raw.githubusercontent.com/lumioguard/lumioguard-cc/main/schemas/"
 
 func compiler(t *testing.T) *jsonschema.Compiler {
 	t.Helper()

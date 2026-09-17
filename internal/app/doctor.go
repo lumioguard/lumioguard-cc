@@ -4,9 +4,9 @@ import (
 	"context"
 	"runtime"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
-	"github.com/lumiostack/lumioguard-cc/internal/engine"
-	"github.com/lumiostack/lumioguard-cc/internal/explain"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/engine"
+	"github.com/lumioguard/lumioguard-cc/internal/explain"
 )
 
 // RuntimeInfo describes the executing environment.

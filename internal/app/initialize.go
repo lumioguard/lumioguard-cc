@@ -4,8 +4,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/lumiostack/lumioguard-cc/internal/config"
-	"github.com/lumiostack/lumioguard-cc/internal/product"
+	"github.com/lumioguard/lumioguard-cc/internal/config"
+	"github.com/lumioguard/lumioguard-cc/internal/product"
 )
 
 // ErrConfigExists is returned when `init` finds an existing configuration.

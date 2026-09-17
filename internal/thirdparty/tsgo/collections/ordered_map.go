@@ -16,7 +16,7 @@ import (
 	"slices"
 	"strconv"
 
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/json"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/json"
 )
 
 // OrderedMap is an insertion ordered map.

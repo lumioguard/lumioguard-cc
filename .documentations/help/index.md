@@ -14,12 +14,12 @@ description: Get help with lumioguard CC.
 
     Common questions about privacy, AI, results and how it compares with other tools.
 
--   [:lucide-git-pull-request:{ .lg-icon } **Report a problem**](https://github.com/lumiostack/lumioguard-cc/issues)
+-   [:lucide-git-pull-request:{ .lg-icon } **Report a problem**](https://github.com/lumioguard/lumioguard-cc/issues)
 
     Open an issue on GitHub. For a wrong measurement, include the rule ID, a small code sample and the
     value you expected.
 
--   [:lucide-lock:{ .lg-icon } **Security issue**](https://github.com/lumiostack/lumioguard-cc/blob/main/SECURITY.md)
+-   [:lucide-lock:{ .lg-icon } **Security issue**](https://github.com/lumioguard/lumioguard-cc/blob/main/SECURITY.md)
 
     Report it privately, following the security policy. Never open a public issue for it.
 

@@ -5,8 +5,8 @@ package analysis
 import (
 	"context"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
 )
 
 // LineSet is a set of 1-based line numbers.

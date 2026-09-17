@@ -16,8 +16,8 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/json"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/stringutil"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/json"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/stringutil"
 )
 
 // https://tc39.es/ecma262/2024/multipage/ecmascript-data-types-and-values.html#sec-numeric-types-number-tostring

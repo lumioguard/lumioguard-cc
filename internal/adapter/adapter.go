@@ -7,8 +7,8 @@ import (
 	"maps"
 	"slices"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/sourcetext"
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/sourcetext"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
 )
 
 // Token is one lexical token used for exact clone detection. Comments are not

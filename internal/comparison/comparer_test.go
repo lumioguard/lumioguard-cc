@@ -3,7 +3,7 @@ package comparison
 import (
 	"testing"
 
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
 )
 
 func measurement(file, symbol string, value float64) domain.Measurement {

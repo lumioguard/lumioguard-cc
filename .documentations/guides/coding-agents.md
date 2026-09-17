@@ -24,9 +24,9 @@ and verifies the program, and sets up the project:
 ```text
 Install lumioguard CC in this project.
 
-1. Add the agent skill: npx skills add https://github.com/lumiostack/lumioguard-cc -y
+1. Add the agent skill: npx skills add https://github.com/lumioguard/lumioguard-cc -y
 2. Using that skill, install the lumioguard-cc CLI from
-   https://github.com/lumiostack/lumioguard-cc/releases/latest and verify the download.
+   https://github.com/lumioguard/lumioguard-cc/releases/latest and verify the download.
 3. Set up this project with the skill, show me where the code stands, and ask me before
    adding architecture boundaries, agent hooks or PATH changes.
 
@@ -101,7 +101,7 @@ account.
     ```
 
     A longer version, with the reasons, is in
-    [`integrations/codex/AGENTS.snippet.md`](https://github.com/lumiostack/lumioguard-cc/blob/main/integrations/codex/AGENTS.snippet.md).
+    [`integrations/codex/AGENTS.snippet.md`](https://github.com/lumioguard/lumioguard-cc/blob/main/integrations/codex/AGENTS.snippet.md).
 
 ## What the hook compares with
 

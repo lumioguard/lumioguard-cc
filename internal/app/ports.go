@@ -5,9 +5,9 @@ package app
 import (
 	"context"
 
-	"github.com/lumiostack/lumioguard-cc/internal/config"
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/engine"
+	"github.com/lumioguard/lumioguard-cc/internal/config"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/engine"
 )
 
 // ConfigLoader reads and initialises repository configuration.

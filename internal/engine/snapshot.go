@@ -6,9 +6,9 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/fingerprint"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/fingerprint"
 )
 
 // buildSnapshot hashes every analyzed file and the complete configuration so

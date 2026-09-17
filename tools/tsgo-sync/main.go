@@ -12,13 +12,13 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/lumiostack/lumioguard-cc/internal/paths"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty"
+	"github.com/lumioguard/lumioguard-cc/internal/paths"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty"
 )
 
 const (
 	upstreamPrefix = "github.com/microsoft/typescript-go/internal/"
-	localPrefix    = "github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/"
+	localPrefix    = "github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/"
 	packageName    = "tsgo"
 )
 

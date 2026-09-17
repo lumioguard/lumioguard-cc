@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
 )
 
 // Format selects a renderer.

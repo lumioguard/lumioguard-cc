@@ -1,6 +1,6 @@
 package adapter
 
-import "github.com/lumiostack/lumioguard-cc/internal/domain"
+import "github.com/lumioguard/lumioguard-cc/internal/domain"
 
 // MetricVariants names the exact algorithm variants an adapter used.
 type MetricVariants struct {

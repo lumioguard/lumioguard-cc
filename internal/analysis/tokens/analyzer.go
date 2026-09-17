@@ -7,8 +7,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/lumiostack/lumioguard-cc/internal/analysis"
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/analysis"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
 )
 
 const (

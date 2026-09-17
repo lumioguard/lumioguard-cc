@@ -8,9 +8,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/explain"
-	"github.com/lumiostack/lumioguard-cc/internal/product"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/explain"
+	"github.com/lumioguard/lumioguard-cc/internal/product"
 )
 
 // SARIF 2.1.0 identifiers.

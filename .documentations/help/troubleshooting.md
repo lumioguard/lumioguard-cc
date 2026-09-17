@@ -97,5 +97,5 @@ numbers from different tools.
 
 ## Still stuck?
 
-[Open an issue](https://github.com/lumiostack/lumioguard-cc/issues) with the command you ran, the
+[Open an issue](https://github.com/lumioguard/lumioguard-cc/issues) with the command you ran, the
 output, and the output of `lumioguard-cc doctor`.

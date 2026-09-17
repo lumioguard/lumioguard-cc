@@ -5,8 +5,8 @@ import (
 
 	"github.com/antlr4-go/antlr/v4"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/java/syntax"
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/structure"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/java/syntax"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/structure"
 )
 
 // flowBuilder translates Java parse-tree subtrees into the language-neutral

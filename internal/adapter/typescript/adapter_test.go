@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
 )
 
 func analyze(t *testing.T, name, code string) *adapter.SourceFile {

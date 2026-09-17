@@ -15,11 +15,11 @@ import (
 	"unicode/utf16"
 	"unicode/utf8"
 
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/collections"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/core"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/debug"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/diagnostics"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/stringutil"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/collections"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/core"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/debug"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/diagnostics"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/stringutil"
 )
 
 type regularExpressionFlags int32

@@ -10,11 +10,11 @@ import (
 	"go/token"
 	"os"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/structure"
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/language"
-	"github.com/lumiostack/lumioguard-cc/internal/paths"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/structure"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/language"
+	"github.com/lumioguard/lumioguard-cc/internal/paths"
 )
 
 // Adapter identity. Version changes whenever a measurement algorithm changes.

@@ -20,8 +20,8 @@ import (
 	"slices"
 	"sync"
 
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/core"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/json"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/core"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/json"
 )
 
 // Kind describes how positions inside a segment relate the virtual span to the original span.

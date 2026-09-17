@@ -3,7 +3,7 @@ package java
 import (
 	"testing"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
 )
 
 func javaFile(path, pkg string, imports ...string) *adapter.SourceFile {

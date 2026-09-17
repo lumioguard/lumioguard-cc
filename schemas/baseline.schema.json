@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/lumiostack/lumioguard-cc/main/schemas/baseline.schema.json",
+  "$id": "https://raw.githubusercontent.com/lumioguard/lumioguard-cc/main/schemas/baseline.schema.json",
   "title": "lumioguard CC baseline",
   "type": "object",
   "required": ["schemaVersion", "name", "createdAt", "toolVersion", "snapshot", "adapters", "measurements", "findings", "diagnostics"],

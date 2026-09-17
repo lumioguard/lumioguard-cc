@@ -19,14 +19,14 @@ import (
 	"sync"
 	"time"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/golang"
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/java"
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/python"
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/typescript"
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/paths"
-	"github.com/lumiostack/lumioguard-cc/internal/report"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/golang"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/java"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/python"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/typescript"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/paths"
+	"github.com/lumioguard/lumioguard-cc/internal/report"
 )
 
 type failure struct {

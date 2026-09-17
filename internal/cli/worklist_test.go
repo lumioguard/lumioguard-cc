@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
 )
 
 const nestedSample = `export function outer(a: boolean, b: boolean) {

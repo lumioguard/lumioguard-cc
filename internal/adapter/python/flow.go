@@ -3,8 +3,8 @@ package python
 import (
 	"slices"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/python/syntax"
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/structure"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/python/syntax"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/structure"
 )
 
 // flowBuilder translates Python AST subtrees into the language-neutral

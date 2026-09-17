@@ -6,10 +6,10 @@ import (
 	"context"
 	"time"
 
-	"github.com/lumiostack/lumioguard-cc/internal/analysis"
-	"github.com/lumiostack/lumioguard-cc/internal/discovery"
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/fingerprint"
+	"github.com/lumioguard/lumioguard-cc/internal/analysis"
+	"github.com/lumioguard/lumioguard-cc/internal/discovery"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/fingerprint"
 )
 
 // Clock supplies the current time; tests substitute a fixed clock.

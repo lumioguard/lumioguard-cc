@@ -5,8 +5,8 @@ import (
 	"go/token"
 	"strings"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/sourcetext"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/sourcetext"
 )
 
 // tokenize produces the clone-detection token stream and every comment range.

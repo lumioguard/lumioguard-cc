@@ -4,7 +4,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
 )
 
 var (

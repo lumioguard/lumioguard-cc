@@ -9,10 +9,10 @@ import (
 	"path/filepath"
 	"slices"
 
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/glob"
-	"github.com/lumiostack/lumioguard-cc/internal/paths"
-	"github.com/lumiostack/lumioguard-cc/internal/product"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/glob"
+	"github.com/lumioguard/lumioguard-cc/internal/paths"
+	"github.com/lumioguard/lumioguard-cc/internal/product"
 )
 
 // Result lists the selected files in deterministic order and what was skipped.

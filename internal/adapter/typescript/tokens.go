@@ -4,12 +4,12 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/sourcetext"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/ast"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/core"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/diagnostics"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/scanner"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/sourcetext"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/ast"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/core"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/diagnostics"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/scanner"
 )
 
 // lexemes is the token stream used for clone detection plus every comment

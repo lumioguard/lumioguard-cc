@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/paths"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/ast"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/core"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/parser"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/scanner"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/tspath"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/paths"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/ast"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/core"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/parser"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/scanner"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/tspath"
 )
 
 // parsedFile bundles the AST with the helpers that need the source text.

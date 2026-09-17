@@ -12,8 +12,8 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/collections"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/tspath"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/collections"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/tspath"
 )
 
 //go:generate go tool golang.org/x/tools/cmd/stringer -type=ModuleKind -trimprefix=ModuleKind -output=modulekind_stringer_generated.go

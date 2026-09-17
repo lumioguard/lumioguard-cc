@@ -4,11 +4,11 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/explain"
-	"github.com/lumiostack/lumioguard-cc/internal/glob"
-	"github.com/lumiostack/lumioguard-cc/internal/product"
-	"github.com/lumiostack/lumioguard-cc/internal/worklist"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/explain"
+	"github.com/lumioguard/lumioguard-cc/internal/glob"
+	"github.com/lumioguard/lumioguard-cc/internal/product"
+	"github.com/lumioguard/lumioguard-cc/internal/worklist"
 )
 
 // WorklistRequest describes a `worklist` invocation: a check plus filters.

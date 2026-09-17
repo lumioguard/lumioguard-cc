@@ -99,9 +99,9 @@ then on the agent checks its own changes:
 ```text
 Install lumioguard CC in this project.
 
-1. Add the agent skill: npx skills add https://github.com/lumiostack/lumioguard-cc -y
+1. Add the agent skill: npx skills add https://github.com/lumioguard/lumioguard-cc -y
 2. Using that skill, install the lumioguard-cc CLI from
-   https://github.com/lumiostack/lumioguard-cc/releases/latest and verify the download.
+   https://github.com/lumioguard/lumioguard-cc/releases/latest and verify the download.
 3. Set up this project with the skill, show me where the code stands, and ask me before
    adding architecture boundaries, agent hooks or PATH changes.
 
@@ -129,7 +129,7 @@ request only on what the pull request made worse:
 - uses: actions/checkout@v4
   with:
     fetch-depth: 0            # the comparison needs the target branch
-- uses: lumiostack/lumioguard-cc@v0.1.0
+- uses: lumioguard/lumioguard-cc@v0.1.0
 ```
 
 Add `sarif-file: lumioguard-cc.sarif` and upload the file with
@@ -142,7 +142,7 @@ You need Go 1.27 or later, and Git for `--base`. No Node.js, Python or Java is
 needed.
 
 ```bash
-go install github.com/lumiostack/lumioguard-cc/cmd/lumioguard-cc@latest
+go install github.com/lumioguard/lumioguard-cc/cmd/lumioguard-cc@latest
 ```
 
 Or build from a clone with `go build -o bin/lumioguard-cc ./cmd/lumioguard-cc`.

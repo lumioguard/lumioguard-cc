@@ -12,8 +12,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/lumiostack/lumioguard-cc/internal/paths"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty"
+	"github.com/lumioguard/lumioguard-cc/internal/paths"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty"
 )
 
 const (
@@ -77,24 +77,29 @@ func lf(data []byte) []byte {
 	return bytes.ReplaceAll(data, []byte("\r\n"), []byte("\n"))
 }
 
-// linkedModules lists every module whose code is compiled into the executable.
-// Test-only and tool-only modules are excluded because they are not shipped.
+// shippedPlatforms are the operating systems the release builds for; a module linked on
+// any of them, such as mousetrap on Windows, must appear in the notices.
+var shippedPlatforms = []string{"linux", "darwin", "windows"}
+
+// linkedModules lists every module whose code is compiled into a shipped executable, the same
+// on every platform. Test-only and tool-only modules are excluded because they are not shipped.
 func linkedModules() ([]module, error) {
-	output, err := exec.Command("go", "list", "-deps",
-		"-f", "{{if .Module}}{{.Module.Path}}\t{{.Module.Version}}\t{{.Module.Dir}}{{end}}", mainPkg).Output()
-	if err != nil {
-		return nil, fmt.Errorf("list dependencies: %w", err)
-	}
 	seen := map[string]module{}
-	for _, line := range strings.Split(string(output), "\n") {
-		fields := strings.Split(strings.TrimSpace(line), "\t")
-		if len(fields) != 3 || fields[0] == "" || fields[2] == "" {
-			continue
+	for _, goos := range shippedPlatforms {
+		cmd := exec.Command("go", "list", "-deps",
+			"-f", "{{if and .Module (not .Module.Main)}}{{.Module.Path}}\t{{.Module.Version}}\t{{.Module.Dir}}{{end}}", mainPkg)
+		cmd.Env = append(os.Environ(), "GOOS="+goos)
+		output, err := cmd.Output()
+		if err != nil {
+			return nil, fmt.Errorf("list dependencies for %s: %w", goos, err)
 		}
-		if strings.HasPrefix(fields[0], "github.com/lumiostack/") {
-			continue
+		for _, line := range strings.Split(string(output), "\n") {
+			fields := strings.Split(strings.TrimSpace(line), "\t")
+			if len(fields) != 3 || fields[0] == "" || fields[2] == "" {
+				continue
+			}
+			seen[fields[0]] = module{Path: fields[0], Version: fields[1], Dir: fields[2]}
 		}
-		seen[fields[0]] = module{Path: fields[0], Version: fields[1], Dir: fields[2]}
 	}
 	modules := make([]module, 0, len(seen))
 	for _, m := range seen {

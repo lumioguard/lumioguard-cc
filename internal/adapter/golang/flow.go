@@ -5,7 +5,7 @@ import (
 	"go/token"
 	"slices"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/structure"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/structure"
 )
 
 // flowBuilder translates Go syntax trees into the language-neutral

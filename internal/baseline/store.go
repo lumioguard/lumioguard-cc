@@ -12,8 +12,8 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/product"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/product"
 )
 
 // ErrExists is returned when a baseline would be overwritten without --replace.

@@ -3,9 +3,9 @@
 package config
 
 import (
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/language"
-	"github.com/lumiostack/lumioguard-cc/internal/product"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/language"
+	"github.com/lumioguard/lumioguard-cc/internal/product"
 )
 
 func advisory(threshold float64) domain.MetricPolicy {

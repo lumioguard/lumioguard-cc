@@ -8,11 +8,11 @@ import (
 	"slices"
 	"sync"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
-	"github.com/lumiostack/lumioguard-cc/internal/analysis"
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/language"
-	"github.com/lumiostack/lumioguard-cc/internal/paths"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/analysis"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/language"
+	"github.com/lumioguard/lumioguard-cc/internal/paths"
 )
 
 const createdAtLayout = "2006-01-02T15:04:05.000Z07:00"
