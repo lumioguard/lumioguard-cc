@@ -19,15 +19,26 @@ others.
 
 ## How it counts
 
-1. Each file is read as a stream of tokens, with comments and whitespace removed.
+1. Each file is read as a stream of tokens, with comments and whitespace removed. Import declarations
+   are skipped as well: two files that import the same modules are not copies of each other, and a
+   copy never spans an import.
 2. A run of tokens counts as a copy when it:
     - is at least `minTokens` tokens long;
     - covers at least `minLines` lines;
     - matches another run exactly, including names;
     - does not overlap the run it matches.
-3. The **density** is the number of duplicated lines divided by all non-blank lines analyzed. It is one
+3. Matching runs are extended token by token until the copies differ or one of them ends. One copied
+   block is therefore one finding, however long it is, listing every place it appears.
+4. The **density** is the number of duplicated lines divided by all non-blank lines analyzed. It is one
    number for the whole project, and each line counts once.
-4. When the density is above the threshold, every copied block is also reported with all its locations.
+5. When the density is above the threshold, every copied block is also reported with all its locations.
+   A block's value is the number of lines its copies take up together, so the finding is `worsened`
+   when a copy grows or another copy appears.
+
+A block is identified by the files and functions that hold its copies, not by the copied text. Editing
+the block, or the code around it, keeps the finding. Moving a copy into another function makes the
+finding look new and the old one resolved, in the same way as renaming a function does for the
+complexity rules.
 
 ## What it misses
 
@@ -39,6 +50,18 @@ others.
 
 Not every copy is a mistake. Two blocks can look alike today and still need to change for different
 reasons.
+
+## Why other tools show a different number
+
+Duplication tools agree on the idea and differ in the details, so the percentages are not comparable:
+
+- The minimum size differs. SonarQube, for example, looks for 100 tokens across at least 10 lines in
+  most languages; the default here is 50 tokens across 5 lines, which finds smaller copies.
+- The denominator differs. This density divides by non-blank lines; other tools divide by all lines,
+  or by lines without comments.
+- Some tools count a repeated line once per copy, others once. Here each line counts once.
+
+Compare a project with itself over time, with one tool, rather than one tool with another.
 
 ## How to fix it
 

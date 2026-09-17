@@ -18,7 +18,7 @@ func advisory(threshold float64) domain.MetricPolicy {
 }
 
 // Default returns a fresh copy of the default configuration: every supported
-// language, without dependency, build and virtual-environment directories.
+// language, without dependency, build, cache and virtual-environment directories.
 func Default() domain.Config {
 	return domain.Config{
 		SchemaVersion: domain.ConfigSchemaVersion,
@@ -28,11 +28,20 @@ func Default() domain.Config {
 				"**/node_modules/**",
 				"**/dist/**",
 				"**/build/**",
+				"**/out/**",
 				"**/coverage/**",
 				"**/.git/**",
 				"**/" + product.StateDirectoryName + "/**",
 				"**/*.min.js",
 				"**/*.generated.*",
+				// Framework build output and caches that hold compiled copies of the sources.
+				"**/.next/**",
+				"**/.nuxt/**",
+				"**/.output/**",
+				"**/.svelte-kit/**",
+				"**/.turbo/**",
+				"**/.cache/**",
+				"**/.parcel-cache/**",
 				"**/__pycache__/**",
 				"**/.venv/**",
 				"**/venv/**",

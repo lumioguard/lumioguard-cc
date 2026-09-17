@@ -100,7 +100,7 @@ func Analyze(relativePath, absolutePath, code string) *adapter.SourceFile {
 		commentRanges[i] = sourcetext.Range{Start: comment.Start, End: comment.End}
 	}
 	file.Tokens = convertTokens(tokens)
-	file.Imports = collectImports(module)
+	file.Imports, file.ImportSpans = collectImports(module)
 	for _, record := range collectFunctions(module, relativePath) {
 		function := record.Function
 		cyclomatic := structure.Cyclomatic(function)

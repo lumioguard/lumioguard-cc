@@ -102,6 +102,55 @@ func (c *CLI) checkCommand(s *session) *cobra.Command {
 	return cmd
 }
 
+func (c *CLI) worklistCommand(s *session) *cobra.Command {
+	var baselineName, gitBase string
+	var rules, paths []string
+	var top int
+	cmd := &cobra.Command{
+		Use:   "worklist [--base REF | --baseline NAME] [--rule ID]... [--path GLOB]... [--top N]",
+		Short: "Order the places to fix: structure, then hotspots, then duplicated blocks",
+		Long: "Run a check and list where to start a cleanup. Findings are grouped by place and ordered:\n\n" +
+			"  1. dependency cycles and boundary violations;\n" +
+			"  2. hotspots: functions and files, the ones breaking the most rules first, then the ones\n" +
+			"     furthest over their own limit. A function inside another function is listed under it;\n" +
+			"  3. duplicated blocks, the ones taking the most lines first.\n\n" +
+			"The order is a place to start, not a score. --base and --baseline work as for `check` and add each\n" +
+			"place's classification. Exit code 2 means the analysis was incomplete, so the list is too.",
+		Example: "  " + product.Name + " worklist\n" +
+			"  " + product.Name + " worklist --rule complexity.cognitive --top 5\n" +
+			"  " + product.Name + " worklist --path 'src/api/**' --format json",
+		Args: cobra.NoArgs,
+		RunE: func(cmd *cobra.Command, _ []string) error {
+			list, err := c.app.Worklist.Run(cmd.Context(), app.WorklistRequest{
+				Check: app.CheckRequest{Root: s.root, BaselineName: baselineName, GitBase: gitBase},
+				Rules: rules,
+				Paths: paths,
+				Top:   top,
+			})
+			if err != nil {
+				return err
+			}
+			if s.format == report.FormatJSON {
+				if err := report.WriteJSON(s.stdout, list); err != nil {
+					return err
+				}
+			} else if _, err := fmt.Fprintln(s.stdout, report.WorklistText(list)); err != nil {
+				return err
+			}
+			if list.Policy.Status == domain.PolicyIncomplete {
+				return &exitError{code: domain.ExitIncomplete}
+			}
+			return nil
+		},
+	}
+	cmd.Flags().StringVar(&baselineName, "baseline", "", "named baseline to compare with")
+	cmd.Flags().StringVar(&gitBase, "base", "", "Git reference to compare with (merge base of HEAD and REF)")
+	cmd.Flags().StringArrayVar(&rules, "rule", nil, "keep only this rule; repeat for several")
+	cmd.Flags().StringArrayVar(&paths, "path", nil, "keep only files matching this glob; repeat for several")
+	cmd.Flags().IntVar(&top, "top", 20, "places to show per section; 0 shows all")
+	return cmd
+}
+
 func (c *CLI) baselineCommand(s *session) *cobra.Command {
 	baseline := &cobra.Command{
 		Use:   "baseline",

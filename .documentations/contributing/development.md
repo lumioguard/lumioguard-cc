@@ -53,8 +53,15 @@ accurate. Breaking one needs a discussion first.
 - **SARIF is derived, JSON is the record.** `--format sarif` is built from the same report and holds
   less: active findings, their locations and analysis notifications. Nothing exists only in SARIF, so
   tools and agents that need measurements or resolved findings read the JSON report.
+- **One finding per copied block, named after where the copies live.** Matching token windows are
+  extended to the longest region the copies share, so a 40-line copy is one finding, not thirty
+  overlapping ones. The finding's identity is the sorted set of files and enclosing functions of the
+  copies, not the copied text: editing the block or the code around it keeps the finding, as renaming
+  a function does not for the complexity rules. Import declarations are skipped, because two files
+  that import the same modules are not copies of each other.
 - **No overall debt score.** Complexity, duplication and coupling have different units, and any weighting
-  would be arbitrary.
+  would be arbitrary. The `worklist` command orders places without one: by the number of rules a place
+  breaks, then by how far it is over its own limit. That is a place to start, and the docs say so.
 - **Advisory defaults.** There is no universal complexity limit, so size and complexity only warn by
   default. Cycles and declared boundaries block, because they describe intended structure.
 - **Import coverage, never run tests.** Running a project's tests is slow, machine-specific and can have
@@ -101,6 +108,7 @@ flowchart TD
 | `internal/analysis/{graph,duplication,tokens,coverage}` | Cross-file checks |
 | `internal/domain` | Measurements, findings, reports, config, baselines, exit codes; no I/O |
 | `internal/guide` | The task guides printed by `lumioguard-cc guide` |
+| `internal/worklist` | Groups a report's findings by place and orders them for `lumioguard-cc worklist` |
 | `internal/{comparison,policy,baseline,git,config,discovery,report,explain,language}` | Single-purpose services |
 | `internal/thirdparty/tsgo`, `internal/adapter/java/syntax` | Copied and generated parsers; never edit by hand |
 | `tools/*` | Sync, audit, notices, corpus and benchmark commands; not in the binary |

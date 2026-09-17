@@ -10,9 +10,11 @@ edit.
   "source": {
     "include": ["**/*.js", "**/*.jsx", "**/*.mjs", "**/*.cjs", "**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts",
                 "**/*.py", "**/*.pyw", "**/*.java", "**/*.go"],
-    "exclude": ["**/node_modules/**", "**/dist/**", "**/build/**", "**/coverage/**", "**/.git/**",
-                "**/.lumioguard-cc/**", "**/*.min.js", "**/*.generated.*", "**/__pycache__/**",
-                "**/.venv/**", "**/venv/**", "**/site-packages/**", "**/target/**", "**/.gradle/**",
+    "exclude": ["**/node_modules/**", "**/dist/**", "**/build/**", "**/out/**", "**/coverage/**",
+                "**/.git/**", "**/.lumioguard-cc/**", "**/*.min.js", "**/*.generated.*",
+                "**/.next/**", "**/.nuxt/**", "**/.output/**", "**/.svelte-kit/**", "**/.turbo/**",
+                "**/.cache/**", "**/.parcel-cache/**", "**/__pycache__/**", "**/.venv/**",
+                "**/venv/**", "**/site-packages/**", "**/target/**", "**/.gradle/**",
                 "**/vendor/**", "**/testdata/**"]
   },
   "metrics": {
@@ -45,7 +47,8 @@ Exclude only code that nobody edits by hand:
 
 - generated code, such as `**/generated/**` or `**/*.pb.*`;
 - vendored copies, such as `**/vendor/**` or `**/third_party/**`;
-- build output and bundles, such as `**/.next/**` or `**/*.bundle.js`.
+- build output and bundles the defaults do not cover, such as `**/storybook-static/**` or
+  `**/*.bundle.js`.
 
 Do not exclude tests, migrations or scripts just because they score badly. The team should see those
 numbers.

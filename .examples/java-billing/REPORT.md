@@ -3,12 +3,12 @@
 An invoice calculator where every tax rule, coupon and shipping rate was a
 branch inside one method, and the invoice type reached back into storage.
 
-## Before: 13 blocking findings, exit code 1
+## Before: 9 blocking findings, exit code 1
 
 ```
 lumioguard CC check: FAILED
 6 files analyzed in 341 ms
-13 blocking, 0 advisory findings
+9 blocking, 0 advisory findings
 Source tokens: 1480
 - [error] .../domain/Invoice.java:3: domain is not allowed to depend on persistence (new)
 - [error] .../service/BillingService.java:14: complexity.cognitive is 77 count; the configured threshold is 15 (new)
@@ -19,7 +19,7 @@ Source tokens: 1480
 
 | Finding | Count |
 | --- | --- |
-| `duplication.token_clone` | 5 |
+| `duplication.token_clone` | 1 |
 | `complexity.cyclomatic` | 1 |
 | `complexity.cognitive` | 1 |
 | `complexity.nesting_depth` | 1 |

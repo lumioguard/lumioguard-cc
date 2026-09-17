@@ -4,6 +4,7 @@ import (
 	"context"
 	"os"
 	"path/filepath"
+	"slices"
 	"strings"
 	"testing"
 
@@ -302,5 +303,13 @@ func TestAdapterIdentity(t *testing.T) {
 	a := New()
 	if a.ID() != ID || !a.Supports("x.go") || a.Supports("x.ts") || a.Resolver() == nil {
 		t.Fatalf("unexpected adapter identity")
+	}
+}
+
+func TestImportSpansCoverTheImportBlock(t *testing.T) {
+	code := "package sample\n\nimport (\n\t\"fmt\"\n\t\"os\"\n)\n\nimport \"strings\"\n\nfunc use() { fmt.Println(os.Args, strings.ToUpper(\"x\")) }\n"
+	spans := Analyze("spans.go", "/repo/spans.go", code, adapter.Module{}).ImportSpans
+	if !slices.Equal(spans, []adapter.LineSpan{{Line: 3, EndLine: 6}, {Line: 8, EndLine: 8}}) {
+		t.Fatalf("the import block and the single import must each be a span, got %v", spans)
 	}
 }

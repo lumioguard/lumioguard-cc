@@ -20,7 +20,7 @@ Ask before changing `PATH`. Until the user agrees, call the binary by its full p
 | --- | --- |
 | Install or set up lumioguard CC, agent hooks or CI | `lumioguard-cc guide setup` |
 | Finish a code change, or respond to a blocking hook | `lumioguard-cc guide check` |
-| Clean up, simplify or refactor existing code | `lumioguard-cc guide cleanup` |
+| Clean up, simplify or refactor existing code | `lumioguard-cc guide cleanup`, then `lumioguard-cc worklist` for where to start |
 | Read the JSON report | `lumioguard-cc guide report` |
 | Edit `.lumioguard-cc.json` | `lumioguard-cc guide config` |
 

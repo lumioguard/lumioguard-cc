@@ -1,6 +1,7 @@
 package typescript
 
 import (
+	"slices"
 	"strings"
 	"testing"
 
@@ -303,5 +304,13 @@ func TestAdapterIdentity(t *testing.T) {
 	}
 	if a.Analyzers()[ParserName] != ParserVersion {
 		t.Error("parser version must be declared")
+	}
+}
+
+func TestImportSpansCoverImportsAndReExports(t *testing.T) {
+	code := "import {\n  alpha,\n  beta,\n} from \"./ab\";\nexport { gamma } from \"./gamma\";\nexport { alpha };\nimport fs = require(\"fs\");\nconst delta = require(\"./delta\");\nexport const use = () => [alpha, beta, fs, delta];\n"
+	spans := Analyze("spans.ts", "/repo/spans.ts", code).ImportSpans
+	if !slices.Equal(spans, []adapter.LineSpan{{Line: 1, EndLine: 4}, {Line: 5, EndLine: 5}, {Line: 7, EndLine: 7}}) {
+		t.Fatalf("imports, re-exports and import-equals are spans; a plain export and a require call are not: %v", spans)
 	}
 }

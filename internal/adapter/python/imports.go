@@ -9,15 +9,19 @@ import (
 
 // collectImports gathers imports, from-imports and literal dynamic imports.
 // Relative specifiers keep their leading dots; star imports end in ".*".
-func collectImports(module *syntax.Node) []adapter.Import {
+// The spans cover the import and from-import statements.
+func collectImports(module *syntax.Node) ([]adapter.Import, []adapter.LineSpan) {
 	imports := []adapter.Import{}
+	var spans []adapter.LineSpan
 	syntax.Walk(module, func(node *syntax.Node) bool {
 		switch node.Kind {
 		case syntax.Import:
+			spans = append(spans, adapter.LineSpan{Line: node.Line, EndLine: node.EndLine})
 			for _, alias := range node.Names {
 				imports = append(imports, adapter.Import{Specifier: alias.Name, Line: node.Line, Kind: adapter.ImportStatic})
 			}
 		case syntax.ImportFrom:
+			spans = append(spans, adapter.LineSpan{Line: node.Line, EndLine: node.EndLine})
 			prefix := strings.Repeat(".", node.Level) + node.Module
 			for _, alias := range node.Names {
 				specifier := prefix
@@ -34,7 +38,7 @@ func collectImports(module *syntax.Node) []adapter.Import {
 		}
 		return true
 	})
-	return imports
+	return imports, spans
 }
 
 func dynamicImport(call *syntax.Node) (string, bool) {

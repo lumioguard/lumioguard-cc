@@ -25,6 +25,7 @@ type Dependencies struct {
 type Application struct {
 	Tool     domain.ToolInfo
 	Check    *CheckService
+	Worklist *WorklistService
 	Baseline *BaselineService
 	Doctor   *DoctorService
 	Init     *InitService
@@ -39,6 +40,7 @@ func New(deps Dependencies) *Application {
 	return &Application{
 		Tool:     deps.Tool,
 		Check:    check,
+		Worklist: NewWorklistService(check, deps.Catalog),
 		Baseline: NewBaselineService(deps.Config, deps.Engine, deps.Baselines),
 		Doctor:   NewDoctorService(deps.Config, deps.Discoverer, deps.Adapters, deps.Catalog, deps.Git),
 		Init:     NewInitService(deps.Config),

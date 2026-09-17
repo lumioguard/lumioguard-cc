@@ -54,15 +54,16 @@ analyzed.
 | `file` | `coupling.module_fan_out`, `size.file_tokens` | `file` |
 | `dependency` | `architecture.boundary_violation` | `evidence.source`, `evidence.target`, `evidence.line` |
 | `cycle` | `dependency.cycle` | `evidence.modules` |
-| `repository` | `duplication.token_clone`, `duplication.token_clone_density` | `evidence.occurrences`: `file`, `startLine`, `endLine` for each copy |
+| `repository` | `duplication.token_clone`, `duplication.token_clone_density` | `evidence.occurrences`: `file`, `startLine`, `endLine` and, inside a function, `symbol` for each copy |
 
 ## Evidence worth reading
 
 - **Cognitive complexity:** `evidence.increments` lists each point with its `type`, `line` and
   `nesting`.
 - **Cyclomatic complexity:** `evidence.decisions` lists each decision point and its line.
-- **Duplication:** each `duplication.token_clone` finding lists its copies.
-  `duplication.token_clone_density` gives the share of duplicated lines.
+- **Duplication:** each `duplication.token_clone` finding is one copied block, however long; its
+  `current` is the number of lines the copies take up together, and `evidence.tokens` is the length
+  of the block. `duplication.token_clone_density` gives the share of duplicated lines.
 
 ## Matching findings between versions
 
@@ -71,7 +72,7 @@ A finding's identity is its rule plus its location:
 - for function rules, the file and the function name;
 - for boundary violations, the two files;
 - for cycles, the files in the cycle;
-- for duplication, the copied content.
+- for duplication, the files and functions that hold the copies, not the copied text.
 
 A file that is moved without being edited keeps its findings. A finding looks new if you rename its
 function, or if you move and edit its file in the same change.

@@ -97,7 +97,7 @@ func Analyze(relativePath, absolutePath, code string) *adapter.SourceFile {
 	tokens, comments := tokenize(parsed)
 	file.Tokens = tokens
 	file.Module = adapter.Module{Package: packageName(parsed)}
-	file.Imports = collectImports(parsed)
+	file.Imports, file.ImportSpans = collectImports(parsed)
 	for _, record := range collectFunctions(parsed, relativePath) {
 		function := record.Function
 		cyclomatic := structure.Cyclomatic(function)

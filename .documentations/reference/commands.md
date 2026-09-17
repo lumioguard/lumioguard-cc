@@ -10,6 +10,7 @@ description: Every lumioguard-cc command and flag, with examples.
 | --- | --- |
 | [`init`](#init) | Creates `.lumioguard-cc.json` with the defaults |
 | [`check`](#check) | Analyzes the code and decides pass, fail or incomplete |
+| [`worklist`](#worklist) | Orders the places to fix, for a cleanup |
 | [`baseline create`](#baseline-create) | Saves today's results as a stored baseline |
 | [`explain`](#explain) | Prints the exact definition of a rule |
 | [`guide`](#guide) | Prints step-by-step guides |
@@ -58,6 +59,47 @@ Use either `--base` or `--baseline`, not both. `check` never changes files, conf
 
 **Exit codes:** 0 passed, 1 failed, 2 incomplete or invalid input. They are the same for every format.
 See [Results and report](results.md).
+
+## worklist
+
+```bash
+lumioguard-cc worklist                                  # where to start a cleanup
+lumioguard-cc worklist --rule complexity.cognitive       # one rule only
+lumioguard-cc worklist --path 'src/api/**' --top 0      # one folder, every place
+lumioguard-cc worklist --base main --format json        # with classifications, for tools
+```
+
+```text
+lumioguard CC worklist: 10 findings in 5 places
+Structure, fix first:
+- src/domain/order.ts:1: domain is not allowed to depend on persistence
+- src/domain/order.ts|src/persistence/database.ts: A dependency cycle connects src/domain/order.ts, src/persistence/database.ts
+Hotspots, most rules broken first:
+1. src/api/handler.ts:5 processOrder  complexity.cognitive 96 (limit 15), complexity.cyclomatic 52 (limit 10), ...
+2. src/api/validation.ts:9 validateAddress  complexity.cyclomatic 16 (limit 10)
+Duplicated blocks, largest first (duplication.token_clone_density 15.5 (limit 3)):
+- 40 lines in 2 places: src/api/handler.ts:21-40 processOrder, src/api/validation.ts:11-30 validateAddress
+```
+
+Runs a check and groups its findings by place, in the order a cleanup should take them:
+
+1. **Structure:** dependency cycles and boundary violations.
+2. **Hotspots:** functions and files, the ones breaking the most rules first, then the ones furthest
+   over their own limit. A function inside another function is listed under it with a `+`, because
+   its points already count toward the outer function.
+3. **Duplicated blocks**, the ones taking the most lines first, with every copy.
+
+The order is a place to start, not a score.
+
+| Flag | Meaning |
+| --- | --- |
+| `--rule ID` | Keep one rule only; repeat for several |
+| `--path GLOB` | Keep files matching the pattern only; repeat for several. A copied block or a cycle matches if any of its files does. |
+| `--top N` | Places per section, 20 by default; `0` shows all |
+| `--base REF`, `--baseline NAME` | As for `check`; each place then shows its classification |
+
+`--format json` prints the same list as one JSON document. **Exit codes:** 0, or 2 when the analysis
+was incomplete or a flag was invalid. The list never fails a check; use `check` for that.
 
 ## baseline create
 
