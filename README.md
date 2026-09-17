@@ -16,6 +16,10 @@ your machine, with no network, and gives the same result every time for the same
 code. Step by step, the codebase stays maintainable, small and cheap for agents
 to work with.
 
+> [!TIP]
+> **Documentation:** [cc-docs.lumioguard.dev](https://cc-docs.lumioguard.dev/) has the
+> install steps, guides, every rule with examples, and the command reference.
+
 ## What it checks
 
 | Check | What it reports |
@@ -195,6 +199,9 @@ sh .examples/run.sh bin/lumioguard-cc
 
 ## Documentation
 
+The documentation portal is at [cc-docs.lumioguard.dev](https://cc-docs.lumioguard.dev/).
+The same pages live in this repository:
+
 | Section | Read it to |
 | --- | --- |
 | [Get started](.documentations/get-started/index.md) | Learn what the tool is, install it, and run a first check |
@@ -204,10 +211,10 @@ sh .examples/run.sh bin/lumioguard-cc
 | [Help](.documentations/help/index.md) | Solve common problems and read the FAQ |
 | [Contribute](.documentations/contributing/index.md) | Report problems, and change, test and release the code |
 
-### Run the documentation portal
+### Run the documentation portal locally
 
-The pages are also a searchable website built with [Zensical](https://zensical.org).
-You need Python 3.
+The portal at [cc-docs.lumioguard.dev](https://cc-docs.lumioguard.dev/) is built from these
+pages with [Zensical](https://zensical.org). To preview it on your machine you need Python 3.
 
 ```bash
 python -m venv .venv

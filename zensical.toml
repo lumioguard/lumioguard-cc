@@ -3,9 +3,9 @@
 [project]
 site_name = "lumioguard CC"
 site_description = "Sits in the coding agent loop and keeps AI-written code clean as the project grows."
-site_url = "https://lumiostack.github.io/lumioguard-cc/"
-repo_url = "https://github.com/lumiostack/lumioguard-cc"
-repo_name = "lumiostack/lumioguard-cc"
+site_url = "https://cc-docs.lumioguard.dev/"
+repo_url = "https://github.com/lumioguard/lumioguard-cc"
+repo_name = "lumioguard/lumioguard-cc"
 edit_uri = "edit/main/.documentations/"
 copyright = "Maintained by Lumio Software FZ LLC · <a href=\"https://lumioguard.dev\">lumioguard.dev</a>"
 docs_dir = "dist/docs-src"
