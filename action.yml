@@ -10,7 +10,7 @@ inputs:
   version:
     description: >-
       Release to install, such as 0.1.0. Defaults to the tag this action was referenced with,
-      so `uses: lumiostack/lumioguard-cc@v0.1.0` installs 0.1.0.
+      so `uses: lumioguard/lumioguard-cc@v0.1.0` installs 0.1.0.
     required: false
     default: ""
   base:
@@ -54,7 +54,7 @@ runs:
           case "$ACTION_REF" in
             v[0-9]*) version="${ACTION_REF#v}" ;;
             *)
-              echo "::error::Set the 'version' input, or reference this action by a release tag such as lumiostack/lumioguard-cc@v0.1.0 (got '$ACTION_REF')"
+              echo "::error::Set the 'version' input, or reference this action by a release tag such as lumioguard/lumioguard-cc@v0.1.0 (got '$ACTION_REF')"
               exit 2 ;;
           esac
         fi
@@ -72,7 +72,7 @@ runs:
         name="lumioguard-cc_${version}_${goos}_${goarch}"
         archive="$name.tar.gz"
         if [ "$goos" = windows ]; then archive="$name.zip"; fi
-        base="https://github.com/lumiostack/lumioguard-cc/releases/download/v${version}"
+        base="https://github.com/lumioguard/lumioguard-cc/releases/download/v${version}"
         dir="${RUNNER_TEMP:-/tmp}/lumioguard-cc"
         mkdir -p "$dir"
         cd "$dir"

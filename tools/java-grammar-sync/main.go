@@ -13,8 +13,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/lumiostack/lumioguard-cc/internal/paths"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty"
+	"github.com/lumioguard/lumioguard-cc/internal/paths"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty"
 )
 
 const (

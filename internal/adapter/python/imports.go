@@ -3,8 +3,8 @@ package python
 import (
 	"strings"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/python/syntax"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/python/syntax"
 )
 
 // collectImports gathers imports, from-imports and literal dynamic imports.

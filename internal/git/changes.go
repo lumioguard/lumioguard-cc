@@ -9,9 +9,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/lumiostack/lumioguard-cc/internal/analysis"
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/paths"
+	"github.com/lumioguard/lumioguard-cc/internal/analysis"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/paths"
 )
 
 var hunkHeader = regexp.MustCompile(`^@@ -\d+(?:,\d+)? \+(\d+)(?:,(\d+))? @@`)

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/lumiostack/lumioguard-cc/main/schemas/config.schema.json",
+  "$id": "https://raw.githubusercontent.com/lumioguard/lumioguard-cc/main/schemas/config.schema.json",
   "title": "lumioguard CC configuration",
   "type": "object",
   "required": ["schemaVersion", "source", "metrics", "architecture", "coverage"],

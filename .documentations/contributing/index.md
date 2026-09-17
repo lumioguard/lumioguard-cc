@@ -14,7 +14,7 @@ lumioguard CC is open to contributions: bug reports, wrong measurements, documen
 
     ---
 
-    [Open an issue](https://github.com/lumiostack/lumioguard-cc/issues). For a wrong measurement,
+    [Open an issue](https://github.com/lumioguard/lumioguard-cc/issues). For a wrong measurement,
     include the rule ID, the smallest code sample that shows it, and the value you expected.
 
 -   :lucide-book-open:{ .lg .middle .lg-icon } **Improve the documentation**
@@ -35,7 +35,7 @@ lumioguard CC is open to contributions: bug reports, wrong measurements, documen
 
     ---
 
-    Follow the [security policy](https://github.com/lumiostack/lumioguard-cc/blob/main/SECURITY.md).
+    Follow the [security policy](https://github.com/lumioguard/lumioguard-cc/blob/main/SECURITY.md).
     Never open a public issue for it.
 
 </div>
@@ -57,7 +57,7 @@ code.
 You need Go 1.27 or later and Git.
 
 ```bash
-git clone https://github.com/lumiostack/lumioguard-cc.git
+git clone https://github.com/lumioguard/lumioguard-cc.git
 cd lumioguard-cc
 go build -o bin/lumioguard-cc ./cmd/lumioguard-cc
 go test ./...
@@ -71,10 +71,10 @@ Before you open the pull request:
 - [x] Any number in the documentation comes from running the tool.
 
 The full checklist is in
-[CONTRIBUTING.md](https://github.com/lumiostack/lumioguard-cc/blob/main/CONTRIBUTING.md).
+[CONTRIBUTING.md](https://github.com/lumioguard/lumioguard-cc/blob/main/CONTRIBUTING.md).
 
 ## Using AI coding agents
 
 You may use them. You are responsible for every line: read it, run the checks, and make sure any
 numbers in the documentation came from running the tool. Agent instructions are in
-[AGENTS.md](https://github.com/lumiostack/lumioguard-cc/blob/main/AGENTS.md).
+[AGENTS.md](https://github.com/lumioguard/lumioguard-cc/blob/main/AGENTS.md).

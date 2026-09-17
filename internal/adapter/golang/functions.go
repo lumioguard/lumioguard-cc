@@ -4,8 +4,8 @@ import (
 	"go/ast"
 	"slices"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/sourcetext"
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/structure"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/sourcetext"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/structure"
 )
 
 // collectFunctions finds every function declaration and function literal with

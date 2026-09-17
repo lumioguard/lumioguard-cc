@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/lumiostack/lumioguard-cc/internal/config"
+	"github.com/lumioguard/lumioguard-cc/internal/config"
 )
 
 func TestEveryTopicHasExactlyOneFile(t *testing.T) {

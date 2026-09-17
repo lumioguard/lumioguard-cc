@@ -8,7 +8,7 @@ While the version is below 1.0, a minor release may change measurements or the
 report format. Such changes are always listed under **Changed**, with what users
 need to do.
 
-## Unreleased
+## 0.1.0 - 2026-09-17
 
 ### Added
 
@@ -35,7 +35,7 @@ need to do.
   directories, including the output of Next.js, Nuxt, SvelteKit, Turborepo and
   Parcel.
 - `--format sarif` on `check`, for GitHub code scanning and other SARIF 2.1.0 readers.
-- A GitHub Action, `lumiostack/lumioguard-cc@vX.Y.Z`, that installs the matching release and
+- A GitHub Action, `lumioguard/lumioguard-cc@vX.Y.Z`, that installs the matching release and
   checks what a pull request made worse.
 - Import of line, branch and changed-line coverage from LCOV reports.
 - Comparison with a Git commit (`--base`) or a stored baseline (`--baseline`), so

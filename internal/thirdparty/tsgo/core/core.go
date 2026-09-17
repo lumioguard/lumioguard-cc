@@ -22,10 +22,10 @@ import (
 	"unicode/utf16"
 	"unicode/utf8"
 
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/debug"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/json"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/stringutil"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/tspath"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/debug"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/json"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/stringutil"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/tspath"
 )
 
 func ApplyDebugStackLimit() {

@@ -11,12 +11,12 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/lumiostack/lumioguard-cc/internal/cli"
-	"github.com/lumiostack/lumioguard-cc/internal/compose"
-	"github.com/lumiostack/lumioguard-cc/internal/config"
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/guide"
-	"github.com/lumiostack/lumioguard-cc/internal/product"
+	"github.com/lumioguard/lumioguard-cc/internal/cli"
+	"github.com/lumioguard/lumioguard-cc/internal/compose"
+	"github.com/lumioguard/lumioguard-cc/internal/config"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/guide"
+	"github.com/lumioguard/lumioguard-cc/internal/product"
 )
 
 type run struct {

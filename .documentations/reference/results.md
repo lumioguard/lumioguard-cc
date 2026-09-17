@@ -59,7 +59,7 @@ finding is `new`.
 `lumioguard-cc check --format json` prints exactly one JSON document on standard output. Errors go to
 standard error. The same code and configuration always give the same report, apart from the `run`
 block. The format is defined by
-[`schemas/report.schema.json`](https://github.com/lumiostack/lumioguard-cc/blob/main/schemas/report.schema.json).
+[`schemas/report.schema.json`](https://github.com/lumioguard/lumioguard-cc/blob/main/schemas/report.schema.json).
 It is the complete record; the SARIF output below is derived from it.
 
 | Field | Contents |

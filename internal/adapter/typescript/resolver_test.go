@@ -3,7 +3,7 @@ package typescript
 import (
 	"testing"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
 )
 
 func TestResolveRelativeCandidates(t *testing.T) {

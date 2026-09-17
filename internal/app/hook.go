@@ -12,9 +12,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/fingerprint"
-	"github.com/lumiostack/lumioguard-cc/internal/product"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/fingerprint"
+	"github.com/lumioguard/lumioguard-cc/internal/product"
 )
 
 // DefaultMaxCorrectionAttempts bounds how many times the Stop hook blocks a

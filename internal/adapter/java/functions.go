@@ -3,8 +3,8 @@ package java
 import (
 	"github.com/antlr4-go/antlr/v4"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/java/syntax"
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/structure"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/java/syntax"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/structure"
 )
 
 // collectFunctions finds every method, constructor and lambda with a body,

@@ -3,7 +3,7 @@ package golang
 import (
 	"testing"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
 )
 
 func TestResolveGoImports(t *testing.T) {

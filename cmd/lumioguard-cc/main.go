@@ -6,8 +6,8 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/lumiostack/lumioguard-cc/internal/cli"
-	"github.com/lumiostack/lumioguard-cc/internal/compose"
+	"github.com/lumioguard/lumioguard-cc/internal/cli"
+	"github.com/lumioguard/lumioguard-cc/internal/compose"
 )
 
 func main() {

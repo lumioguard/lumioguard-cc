@@ -5,8 +5,8 @@ package policy
 import (
 	"fmt"
 
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/fingerprint"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/fingerprint"
 )
 
 // Evaluator applies configured metric policies.

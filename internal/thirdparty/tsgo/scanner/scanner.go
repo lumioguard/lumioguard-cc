@@ -17,12 +17,12 @@ import (
 	"unicode/utf16"
 	"unicode/utf8"
 
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/ast"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/core"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/debug"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/diagnostics"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/jsnum"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/stringutil"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/ast"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/core"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/debug"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/diagnostics"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/jsnum"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/stringutil"
 )
 
 type EscapeSequenceScanningFlags int32

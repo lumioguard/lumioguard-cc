@@ -7,7 +7,7 @@ import (
 	"maps"
 	"slices"
 
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
 )
 
 // Comparer implements the baseline comparison rules.

@@ -1,4 +1,4 @@
-module github.com/lumiostack/lumioguard-cc
+module github.com/lumioguard/lumioguard-cc
 
 go 1.27.1
 

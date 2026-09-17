@@ -69,7 +69,7 @@ wants it, agents and CI that check their own changes.
    - uses: actions/checkout@v4
      with:
        fetch-depth: 0            # the comparison needs the target branch
-   - uses: lumiostack/lumioguard-cc@v{{version}}
+   - uses: lumioguard/lumioguard-cc@v{{version}}
    ```
 
    To show findings on the pull request diff, add `with: { sarif-file: lumioguard-cc.sarif }` and

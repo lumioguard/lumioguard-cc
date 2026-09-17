@@ -26,7 +26,7 @@ description: Common questions about lumioguard CC.
     No. Everything is inside one program. You need Git only to compare with earlier versions.
 
 ??? question "Is it open source?"
-    Yes, under the [MIT License](https://github.com/lumiostack/lumioguard-cc/blob/main/LICENSE). The
+    Yes, under the [MIT License](https://github.com/lumioguard/lumioguard-cc/blob/main/LICENSE). The
     parsers it includes are open source too; their notices ship with every release.
 
 ## Results

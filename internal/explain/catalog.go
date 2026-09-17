@@ -2,7 +2,7 @@
 // limitations and sources shown by `lumioguard-cc explain`.
 package explain
 
-import "github.com/lumiostack/lumioguard-cc/internal/domain"
+import "github.com/lumioguard/lumioguard-cc/internal/domain"
 
 // Classification records how established a definition is.
 type Classification string

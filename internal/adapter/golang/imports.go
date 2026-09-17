@@ -5,7 +5,7 @@ import (
 	"go/token"
 	"strconv"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
 )
 
 // collectImports gathers every import path. Go has no dynamic imports. The

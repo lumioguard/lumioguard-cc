@@ -12,10 +12,10 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/lumiostack/lumioguard-cc/internal/app"
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/product"
-	"github.com/lumiostack/lumioguard-cc/internal/report"
+	"github.com/lumioguard/lumioguard-cc/internal/app"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/product"
+	"github.com/lumioguard/lumioguard-cc/internal/report"
 )
 
 // exitError carries an exit code without a message (the output was already

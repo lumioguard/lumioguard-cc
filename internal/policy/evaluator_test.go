@@ -3,8 +3,8 @@ package policy
 import (
 	"testing"
 
-	"github.com/lumiostack/lumioguard-cc/internal/config"
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/config"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
 )
 
 func TestThresholdFindingsRespectPolicy(t *testing.T) {

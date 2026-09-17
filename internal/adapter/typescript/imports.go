@@ -1,8 +1,8 @@
 package typescript
 
 import (
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/ast"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/ast"
 )
 
 // collectImports gathers static imports, re-exports, literal dynamic imports and

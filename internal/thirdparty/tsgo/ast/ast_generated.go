@@ -12,7 +12,7 @@ package ast
 import (
 	"sync/atomic"
 
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/core"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/core"
 )
 
 var (

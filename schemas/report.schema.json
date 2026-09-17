@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/lumiostack/lumioguard-cc/main/schemas/report.schema.json",
+  "$id": "https://raw.githubusercontent.com/lumioguard/lumioguard-cc/main/schemas/report.schema.json",
   "title": "lumioguard CC analysis report",
   "type": "object",
   "required": ["schemaVersion", "tool", "run", "snapshot", "comparison", "scope", "adapters", "measurements", "findings", "diagnostics", "exclusions", "policy"],

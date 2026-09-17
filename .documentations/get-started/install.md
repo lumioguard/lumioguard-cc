@@ -12,7 +12,7 @@ earlier versions of your code.
 
 ## Download a release
 
-Releases are on the [GitHub releases page](https://github.com/lumiostack/lumioguard-cc/releases). Pick
+Releases are on the [GitHub releases page](https://github.com/lumioguard/lumioguard-cc/releases). Pick
 the file for your computer:
 
 | Computer | File |
@@ -34,7 +34,7 @@ The commands below use version `0.1.0`. Replace it with the latest version on th
     ```bash
     VERSION=0.1.0
     NAME=lumioguard-cc_${VERSION}_linux_amd64        # pick your file from the table
-    BASE=https://github.com/lumiostack/lumioguard-cc/releases/download/v${VERSION}
+    BASE=https://github.com/lumioguard/lumioguard-cc/releases/download/v${VERSION}
 
     curl -fsSLO "$BASE/$NAME.tar.gz"
     curl -fsSLO "$BASE/SHA256SUMS"
@@ -56,7 +56,7 @@ The commands below use version `0.1.0`. Replace it with the latest version on th
     ```powershell
     $Version = "0.1.0"
     $Name = "lumioguard-cc_${Version}_windows_amd64"
-    $Base = "https://github.com/lumiostack/lumioguard-cc/releases/download/v$Version"
+    $Base = "https://github.com/lumioguard/lumioguard-cc/releases/download/v$Version"
 
     Invoke-WebRequest "$Base/$Name.zip" -OutFile "$Name.zip"
     Invoke-WebRequest "$Base/SHA256SUMS" -OutFile SHA256SUMS
@@ -82,7 +82,7 @@ The commands below use version `0.1.0`. Replace it with the latest version on th
     If you have Go 1.27 or later:
 
     ```bash
-    go install github.com/lumiostack/lumioguard-cc/cmd/lumioguard-cc@latest
+    go install github.com/lumioguard/lumioguard-cc/cmd/lumioguard-cc@latest
     ```
 
     The program goes to `$(go env GOPATH)/bin`.

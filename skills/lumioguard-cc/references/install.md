@@ -1,9 +1,9 @@
 # Installing the lumioguard-cc CLI
 
 It is a single binary with no runtime dependencies. Use the download URL or version the user gave;
-otherwise use the latest release from https://github.com/lumiostack/lumioguard-cc/releases.
+otherwise use the latest release from https://github.com/lumioguard/lumioguard-cc/releases.
 
-1. **Find the version.** https://github.com/lumiostack/lumioguard-cc/releases/latest redirects to a
+1. **Find the version.** https://github.com/lumioguard/lumioguard-cc/releases/latest redirects to a
    URL ending in `/tag/vX.Y.Z`.
 
 2. **Pick the file.** Check the platform with `uname -sm`, or `$env:PROCESSOR_ARCHITECTURE` on
@@ -16,7 +16,7 @@ otherwise use the latest release from https://github.com/lumiostack/lumioguard-c
    | Windows x86-64 / ARM64 | `lumioguard-cc_X.Y.Z_windows_amd64.zip` / `_windows_arm64.zip` |
 
    The archive and `SHA256SUMS` are both at
-   `https://github.com/lumiostack/lumioguard-cc/releases/download/vX.Y.Z/<file>`.
+   `https://github.com/lumioguard/lumioguard-cc/releases/download/vX.Y.Z/<file>`.
 
 3. **Download and verify.** Download both into a temp folder. Compare the archive's SHA-256 with its
    line in `SHA256SUMS`. Use `sha256sum` on Linux, `shasum -a 256` on macOS, and `Get-FileHash` or
@@ -35,5 +35,5 @@ otherwise use the latest release from https://github.com/lumiostack/lumioguard-c
    ask before adding it.
 
 If downloads are blocked and Go 1.27 or later is installed, run
-`go install github.com/lumiostack/lumioguard-cc/cmd/lumioguard-cc@latest`. If that fails too, stop and
+`go install github.com/lumioguard/lumioguard-cc/cmd/lumioguard-cc@latest`. If that fails too, stop and
 tell the user.

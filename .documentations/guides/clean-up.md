@@ -86,9 +86,9 @@ their reports came from running the tool.
 
 | Project | Blocking findings, before and after |
 | --- | --- |
-| [TypeScript order service](https://github.com/lumiostack/lumioguard-cc/blob/main/.examples/typescript-order-service/REPORT.md) | 10 → 0 |
-| [Python inventory](https://github.com/lumiostack/lumioguard-cc/blob/main/.examples/python-inventory/REPORT.md) | 9 → 0 |
-| [Java billing](https://github.com/lumiostack/lumioguard-cc/blob/main/.examples/java-billing/REPORT.md) | 9 → 0 |
+| [TypeScript order service](https://github.com/lumioguard/lumioguard-cc/blob/main/.examples/typescript-order-service/REPORT.md) | 10 → 0 |
+| [Python inventory](https://github.com/lumioguard/lumioguard-cc/blob/main/.examples/python-inventory/REPORT.md) | 9 → 0 |
+| [Java billing](https://github.com/lumioguard/lumioguard-cc/blob/main/.examples/java-billing/REPORT.md) | 9 → 0 |
 
 !!! tip "Cleaning up with a coding agent"
     Ask the agent to "clean up this project using lumioguard-cc". The installed skill and

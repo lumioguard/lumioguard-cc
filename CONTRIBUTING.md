@@ -20,7 +20,7 @@ people store, so they need agreement before code.
 You need Go 1.27 or later and Git.
 
 ```bash
-git clone https://github.com/lumiostack/lumioguard-cc.git
+git clone https://github.com/lumioguard/lumioguard-cc.git
 cd lumioguard-cc
 go build -o bin/lumioguard-cc ./cmd/lumioguard-cc
 go test ./...

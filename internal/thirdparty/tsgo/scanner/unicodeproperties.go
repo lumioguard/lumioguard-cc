@@ -7,7 +7,7 @@
 
 package scanner
 
-import "github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/collections"
+import "github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/collections"
 
 // Table 66: Non-binary Unicode property aliases and their canonical property names
 // https://tc39.es/ecma262/#table-nonbinary-unicode-properties

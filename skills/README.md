@@ -18,16 +18,16 @@ Give users this prompt to paste into their coding agent:
 ```text
 Install lumioguard CC in this project.
 
-1. Add the agent skill: npx skills add https://github.com/lumiostack/lumioguard-cc -y
+1. Add the agent skill: npx skills add https://github.com/lumioguard/lumioguard-cc -y
 2. Using that skill, install the lumioguard-cc CLI from
-   https://github.com/lumiostack/lumioguard-cc/releases/latest and verify the download.
+   https://github.com/lumioguard/lumioguard-cc/releases/latest and verify the download.
 3. Set up this project with the skill, show me where the code stands, and ask me before
    adding architecture boundaries, agent hooks or PATH changes.
 
 From now on, check your own code changes with lumioguard-cc before you finish.
 ```
 
-To add only the skill, run `npx skills add https://github.com/lumiostack/lumioguard-cc -y`.
+To add only the skill, run `npx skills add https://github.com/lumioguard/lumioguard-cc -y`.
 `-y` skips questions, which would otherwise stall an agent. The skill installs into
 `.agents/skills/lumioguard-cc/` and is linked for Claude Code. Add `-g` to install it for every
 project.

@@ -9,7 +9,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
 )
 
 // moduleFinder maps a source file to its Go import path by reading the

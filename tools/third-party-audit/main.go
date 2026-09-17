@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty"
 )
 
 const databaseURL = "https://vuln.go.dev"

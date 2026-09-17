@@ -219,7 +219,7 @@ measurements or formats.
    for Linux, macOS and Windows on amd64 and arm64 with the license and notices inside, and publishes a
    GitHub release with checksums and the changelog section as notes.
 7. The GitHub Action in `action.yml` downloads that release by the same tag, so
-   `uses: lumiostack/lumioguard-cc@vX.Y.Z` works as soon as the release exists.
+   `uses: lumioguard/lumioguard-cc@vX.Y.Z` works as soon as the release exists.
 
 The tool checks its own code: the root `.lumioguard-cc.json` includes every Go file except the copied
 and generated parsers, declares the dependency rules from [Code layout](#code-layout) as boundaries,

@@ -3,8 +3,8 @@ package typescript
 import (
 	"slices"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter/structure"
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/ast"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/structure"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/ast"
 )
 
 // flowBuilder translates TypeScript AST subtrees into the control-flow model,

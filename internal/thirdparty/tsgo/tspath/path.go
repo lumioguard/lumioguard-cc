@@ -15,7 +15,7 @@ import (
 	"unicode/utf8"
 	"unsafe"
 
-	"github.com/lumiostack/lumioguard-cc/internal/thirdparty/tsgo/stringutil"
+	"github.com/lumioguard/lumioguard-cc/internal/thirdparty/tsgo/stringutil"
 )
 
 type Path string

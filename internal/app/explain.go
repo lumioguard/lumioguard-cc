@@ -3,7 +3,7 @@ package app
 import (
 	"fmt"
 
-	"github.com/lumiostack/lumioguard-cc/internal/explain"
+	"github.com/lumioguard/lumioguard-cc/internal/explain"
 )
 
 // ExplainService looks up metric and rule definitions.

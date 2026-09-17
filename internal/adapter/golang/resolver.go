@@ -3,7 +3,7 @@ package golang
 import (
 	"strings"
 
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
 )
 
 // Resolver implements adapter.ImportResolver with Go module rules. An import

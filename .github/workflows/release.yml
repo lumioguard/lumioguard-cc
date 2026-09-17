@@ -42,7 +42,7 @@ jobs:
             if [ "$goos" = windows ]; then ext=".exe"; fi
             mkdir -p "stage/$name"
             CGO_ENABLED=0 GOOS="$goos" GOARCH="$goarch" go build -trimpath \
-              -ldflags "-s -w -X github.com/lumiostack/lumioguard-cc/internal/product.Version=${version}" \
+              -ldflags "-s -w -X github.com/lumioguard/lumioguard-cc/internal/product.Version=${version}" \
               -o "stage/$name/lumioguard-cc${ext}" ./cmd/lumioguard-cc
             # The dependencies' licences require their notices to ship with every binary.
             cp LICENSE README.md THIRD-PARTY-NOTICES.md "stage/$name/"

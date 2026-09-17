@@ -4,8 +4,8 @@ import (
 	"context"
 	"errors"
 
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/engine"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/engine"
 )
 
 // ErrIncompleteAnalysis is returned when a baseline cannot be written because

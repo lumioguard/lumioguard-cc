@@ -37,7 +37,7 @@ jobs:
         with:
           fetch-depth: 0            # the comparison needs the target branch
 
-      - uses: lumiostack/lumioguard-cc@v0.1.0
+      - uses: lumioguard/lumioguard-cc@v0.1.0
 ```
 
 On a pull request the action compares with the target branch. The summary appears in the job log, and
@@ -72,7 +72,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: lumiostack/lumioguard-cc@v0.1.0
+      - uses: lumioguard/lumioguard-cc@v0.1.0
         with:
           sarif-file: lumioguard-cc.sarif
 
@@ -96,7 +96,7 @@ version so that an upgrade never changes results unnoticed:
           VERSION: 0.1.0
         run: |
           NAME="lumioguard-cc_${VERSION}_linux_amd64"
-          BASE="https://github.com/lumiostack/lumioguard-cc/releases/download/v$VERSION"
+          BASE="https://github.com/lumioguard/lumioguard-cc/releases/download/v$VERSION"
           curl -fsSLO "$BASE/$NAME.tar.gz"
           curl -fsSLO "$BASE/SHA256SUMS"
           grep " $NAME.tar.gz\$" SHA256SUMS | sha256sum -c -

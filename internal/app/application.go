@@ -1,10 +1,10 @@
 package app
 
 import (
-	"github.com/lumiostack/lumioguard-cc/internal/adapter"
-	"github.com/lumiostack/lumioguard-cc/internal/domain"
-	"github.com/lumiostack/lumioguard-cc/internal/engine"
-	"github.com/lumiostack/lumioguard-cc/internal/explain"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/domain"
+	"github.com/lumioguard/lumioguard-cc/internal/engine"
+	"github.com/lumioguard/lumioguard-cc/internal/explain"
 )
 
 // Dependencies are the collaborators required to build an Application.

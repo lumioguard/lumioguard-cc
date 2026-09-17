@@ -1,7 +1,7 @@
 GO      ?= go
 BINARY  := lumioguard-cc
 VERSION ?=
-LDFLAGS := $(if $(VERSION),-ldflags "-X github.com/lumiostack/lumioguard-cc/internal/product.Version=$(VERSION)")
+LDFLAGS := $(if $(VERSION),-ldflags "-X github.com/lumioguard/lumioguard-cc/internal/product.Version=$(VERSION)")
 PKGS    := $(shell $(GO) list ./... | grep -v /internal/thirdparty/ | grep -v /internal/adapter/java/syntax)
 DIRS    := $(shell $(GO) list -f '{{.Dir}}' ./... | grep -v thirdparty | grep -v 'java[/\\]syntax')
 
