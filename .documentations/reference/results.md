@@ -12,7 +12,7 @@ clean-up:
 ```text
 lumioguard CC check: FAILED
 6 files analyzed in 156 ms
-16 blocking, 0 advisory findings
+10 blocking, 0 advisory findings
 Source tokens: 1660
 - [error] src/domain/order.ts:1: domain is not allowed to depend on persistence (new)
 - [error] src/api/handler.ts:5: complexity.cognitive is 96 count; the configured threshold is 15 (new)

@@ -121,7 +121,7 @@ func Analyze(relativePath, absolutePath, code string, module adapter.Module) *ad
 	p := &parsedFile{fset: fset, file: tree}
 	tokens, comments := tokenize(code)
 	file.Tokens = tokens
-	file.Imports = collectImports(p)
+	file.Imports, file.ImportSpans = collectImports(p)
 	for _, record := range collectFunctions(p, relativePath) {
 		function := record.Function
 		cyclomatic := structure.Cyclomatic(function)

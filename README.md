@@ -185,9 +185,9 @@ badly and then fixed. Every number in their reports came from running the tool.
 
 | Project | Blocking findings, before and after |
 | --- | --- |
-| [TypeScript order service](.examples/typescript-order-service/REPORT.md) | 16 → 0 |
-| [Python inventory](.examples/python-inventory/REPORT.md) | 13 → 0 |
-| [Java billing](.examples/java-billing/REPORT.md) | 13 → 0 |
+| [TypeScript order service](.examples/typescript-order-service/REPORT.md) | 10 → 0 |
+| [Python inventory](.examples/python-inventory/REPORT.md) | 9 → 0 |
+| [Java billing](.examples/java-billing/REPORT.md) | 9 → 0 |
 
 ```bash
 sh .examples/run.sh bin/lumioguard-cc

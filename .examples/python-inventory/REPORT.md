@@ -4,12 +4,12 @@ A stock rebalancing routine that decides which warehouses have too much of a
 product, which have too little, and moves units between them. The whole
 decision lived in one function with the report generator inlined at the end.
 
-## Before: 13 blocking findings, exit code 1
+## Before: 9 blocking findings, exit code 1
 
 ```
 lumioguard CC check: FAILED
 9 files analyzed in 164 ms
-13 blocking, 0 advisory findings
+9 blocking, 0 advisory findings
 Source tokens: 1314
 - [error] inventory/domain/stock.py:3: domain is not allowed to depend on persistence (new)
 - [error] inventory/service/manager.py:6: complexity.cognitive is 75 count; the configured threshold is 15 (new)
@@ -20,7 +20,7 @@ Source tokens: 1314
 
 | Finding | Count |
 | --- | --- |
-| `duplication.token_clone` | 5 |
+| `duplication.token_clone` | 1 |
 | `complexity.cyclomatic` | 1 |
 | `complexity.cognitive` | 1 |
 | `complexity.nesting_depth` | 1 |

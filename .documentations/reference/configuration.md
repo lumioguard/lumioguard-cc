@@ -24,10 +24,12 @@ with the defaults below. Without the file, a check uses the same defaults.
     "include": ["**/*.js", "**/*.jsx", "**/*.mjs", "**/*.cjs",
                 "**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts",
                 "**/*.py", "**/*.pyw", "**/*.java", "**/*.go"],
-    "exclude": ["**/node_modules/**", "**/dist/**", "**/build/**", "**/coverage/**",
+    "exclude": ["**/node_modules/**", "**/dist/**", "**/build/**", "**/out/**", "**/coverage/**",
                 "**/.git/**", "**/.lumioguard-cc/**", "**/*.min.js", "**/*.generated.*",
-                "**/__pycache__/**", "**/.venv/**", "**/venv/**", "**/site-packages/**",
-                "**/target/**", "**/.gradle/**", "**/vendor/**", "**/testdata/**"]
+                "**/.next/**", "**/.nuxt/**", "**/.output/**", "**/.svelte-kit/**", "**/.turbo/**",
+                "**/.cache/**", "**/.parcel-cache/**", "**/__pycache__/**", "**/.venv/**",
+                "**/venv/**", "**/site-packages/**", "**/target/**", "**/.gradle/**",
+                "**/vendor/**", "**/testdata/**"]
   },
   "metrics": {
     "cyclomatic":         { "enabled": true, "threshold": 12,   "severity": "warning", "block": false },

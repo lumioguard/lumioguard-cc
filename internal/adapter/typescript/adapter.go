@@ -97,7 +97,7 @@ func Analyze(relativePath, absolutePath, code string) *adapter.SourceFile {
 	}
 	lexemes := tokenize(parsed)
 	file.Tokens = lexemes.tokens
-	file.Imports = collectImports(parsed)
+	file.Imports, file.ImportSpans = collectImports(parsed)
 	for _, record := range collectFunctions(parsed, relativePath) {
 		file.Measurements = append(file.Measurements, measure(parsed, record, lexemes.comments)...)
 	}

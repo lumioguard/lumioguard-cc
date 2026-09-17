@@ -1,6 +1,7 @@
 package python
 
 import (
+	"slices"
 	"strings"
 	"testing"
 
@@ -207,5 +208,12 @@ func TestAdapterIdentity(t *testing.T) {
 	a := New()
 	if a.ID() != ID || !a.Supports("x.py") || a.Supports("x.ts") || a.Resolver() == nil {
 		t.Fatalf("unexpected adapter identity")
+	}
+}
+
+func TestImportSpansCoverMultiLineFromImports(t *testing.T) {
+	spans := Analyze("spans.py", "/repo/spans.py", "import os\nfrom pkg import (\n    alpha,\n    beta,\n)\n\n\ndef use():\n    return alpha, beta, os\n").ImportSpans
+	if !slices.Equal(spans, []adapter.LineSpan{{Line: 1, EndLine: 1}, {Line: 2, EndLine: 5}}) {
+		t.Fatalf("a parenthesised from-import must span all its lines, got %v", spans)
 	}
 }

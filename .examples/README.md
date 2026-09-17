@@ -30,11 +30,11 @@ because the shipped defaults are advisory and would only warn.
 
 | Project | Files before → after | Source lines before → after | Source tokens before → after | Blocking findings before → after |
 | --- | --- | --- | --- | --- |
-| typescript-order-service | 6 → 10 | 258 → 307 | 1660 → 2143 | **16 → 0** |
-| python-inventory | 9 → 10 | 154 → 185 | 1314 → 1549 | **13 → 0** |
-| java-billing | 6 → 12 | 229 → 255 | 1480 → 1981 | **13 → 0** (1 advisory remains) |
+| typescript-order-service | 6 → 10 | 258 → 307 | 1660 → 2143 | **10 → 0** |
+| python-inventory | 9 → 10 | 154 → 185 | 1314 → 1549 | **9 → 0** |
+| java-billing | 6 → 12 | 229 → 255 | 1480 → 1981 | **9 → 0** (1 advisory remains) |
 
-All 42 blocking findings are gone. The refactors cost about 20% more source
+All 28 blocking findings are gone. The refactors cost about 20% more source
 lines and between 18% and 34% more tokens, spread over roughly twice as many
 functions: named types, records and lookup tables take room that nested branches
 did not. The one advisory finding that remains in the Java example is a real
@@ -121,15 +121,15 @@ point rather than one that moves with every commit.
 lumioguard CC is written in Go and checks itself. The root `.lumioguard-cc.json`
 includes every `.go` file except the copied TypeScript parser and the generated
 Java parser, declares the dependency rules from the development guide as
-boundaries, and blocks every rule. `bin/lumioguard-cc check` on 2026-09-14:
+boundaries, and blocks every rule. `bin/lumioguard-cc check` on 2026-09-17:
 
 | Measurement | Value |
 | --- | --- |
-| Files analyzed | 128 |
-| Source tokens | 102498 |
-| Blocking findings | 153 |
-| Duplicated blocks (`duplication.token_clone`) | 83 |
-| Functions over a complexity or size threshold | 66 |
+| Files analyzed | 133 |
+| Source tokens | 110856 |
+| Blocking findings | 68 |
+| Duplicated blocks (`duplication.token_clone`) | 0 reported: clone density is 4.9 %, under the 5 % threshold; the measurement's evidence counts 29 copied blocks |
+| Functions over a complexity or size threshold | 43 |
 | Files over 4000 tokens | 2, both in the hand-written Python parser |
 | Boundary violations and cycles | 0 |
 

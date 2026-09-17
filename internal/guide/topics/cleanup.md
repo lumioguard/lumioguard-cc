@@ -30,14 +30,18 @@ from real checks. Everything in `lumioguard-cc guide check` under "Never do thes
 
 ```bash
 lumioguard-cc check --format json > "${TMPDIR:-/tmp}/lg-before.json"
+lumioguard-cc worklist --format json
 ```
 
-Keep this file outside the project.
+Keep the first file outside the project; `policy.blockingFindings` in it is the headline number.
 
-- Group the `findings` by `scope.file` and `scope.symbol`. A function that appears under several
-  rules is a hotspot.
-- Compare `current` with `threshold` to see how far over each finding is.
-- `policy.blockingFindings` is the headline number.
+The worklist groups the active findings by place and orders them: `structure` (cycles and
+boundary violations), then `hotspots` (functions and files, the ones breaking the most rules
+first, then the ones furthest over their own limit), then `clones` (duplicated blocks, the ones
+taking the most lines first). A function inside another function is listed under it in `nested`,
+because its points already count toward the outer one: fix the outer function first. Use
+`--path 'src/api/**'` to work on one folder and `--rule <rule-id>` on one rule; `--top 0` lists
+every place.
 
 Exit code 2 means some code was not analyzed. Fix that first.
 
@@ -62,6 +66,8 @@ A batch is one hotspot, one cycle or one duplicated block.
    change a test's expectations.
 3. **Check against the start** with `lumioguard-cc check --base "$START" --format json`. The batch
    is done when no finding is `new` or `worsened` and more findings are `resolved` than before.
+   A helper you extracted can be over a limit itself; the check reports it as `new`, because it is
+   new debt in a new place. Split it too.
 4. **Commit the batch** if the user wants commits.
 
 Stop when the scope is done, when what remains needs a design decision from the user, or when

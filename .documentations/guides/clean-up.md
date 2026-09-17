@@ -25,11 +25,13 @@ starting commit, and stop when the numbers stop improving.
 
 ```bash
 lumioguard-cc check --format json > lumioguard-before.json
+lumioguard-cc worklist
 ```
 
-Keep this file outside the project. It is your "before" picture. Look for **hotspots**: functions that
-appear under several rules at once, such as long, deeply nested and complex. Fixing one hotspot often
-clears several findings.
+Keep the first file outside the project. It is your "before" picture. The [worklist](../reference/commands.md#worklist)
+orders the places to fix: cycles and boundary violations first, then **hotspots**, functions that break
+several rules at once, such as long, deeply nested and complex, then duplicated blocks. Fixing one
+hotspot often clears several findings. `--path` narrows it to one folder and `--rule` to one rule.
 
 ## 3. Work in order
 
@@ -84,9 +86,9 @@ their reports came from running the tool.
 
 | Project | Blocking findings, before and after |
 | --- | --- |
-| [TypeScript order service](https://github.com/lumiostack/lumioguard-cc/blob/main/.examples/typescript-order-service/REPORT.md) | 16 → 0 |
-| [Python inventory](https://github.com/lumiostack/lumioguard-cc/blob/main/.examples/python-inventory/REPORT.md) | 13 → 0 |
-| [Java billing](https://github.com/lumiostack/lumioguard-cc/blob/main/.examples/java-billing/REPORT.md) | 13 → 0 |
+| [TypeScript order service](https://github.com/lumiostack/lumioguard-cc/blob/main/.examples/typescript-order-service/REPORT.md) | 10 → 0 |
+| [Python inventory](https://github.com/lumiostack/lumioguard-cc/blob/main/.examples/python-inventory/REPORT.md) | 9 → 0 |
+| [Java billing](https://github.com/lumiostack/lumioguard-cc/blob/main/.examples/java-billing/REPORT.md) | 9 → 0 |
 
 !!! tip "Cleaning up with a coding agent"
     Ask the agent to "clean up this project using lumioguard-cc". The installed skill and

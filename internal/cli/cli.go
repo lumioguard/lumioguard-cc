@@ -123,6 +123,7 @@ func (c *CLI) rootCommand(s *session) *cobra.Command {
 		c.initCommand(s),
 		c.doctorCommand(s),
 		c.checkCommand(s),
+		c.worklistCommand(s),
 		c.baselineCommand(s),
 		c.explainCommand(s),
 		c.guideCommand(s),

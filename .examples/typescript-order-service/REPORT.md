@@ -3,12 +3,12 @@
 An order endpoint that grew one branch at a time until a single function did
 validation, pricing, tax, discounts, shipping, persistence and email.
 
-## Before: 16 blocking findings, exit code 1
+## Before: 10 blocking findings, exit code 1
 
 ```
 lumioguard CC check: FAILED
 6 files analyzed in 156 ms
-16 blocking, 0 advisory findings
+10 blocking, 0 advisory findings
 Source tokens: 1660
 - [error] src/domain/order.ts:1: domain is not allowed to depend on persistence (new)
 - [error] src/api/handler.ts:5: complexity.cognitive is 96 count; the configured threshold is 15 (new)
@@ -20,7 +20,7 @@ Source tokens: 1660
 
 | Finding | Count |
 | --- | --- |
-| `duplication.token_clone` | 7 |
+| `duplication.token_clone` | 1 |
 | `complexity.cyclomatic` | 2 |
 | `complexity.cognitive` | 1 |
 | `complexity.nesting_depth` | 1 |

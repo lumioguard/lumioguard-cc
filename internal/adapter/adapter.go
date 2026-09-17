@@ -44,6 +44,12 @@ type Import struct {
 	Kind      ImportKind
 }
 
+// LineSpan is an inclusive range of 1-based lines.
+type LineSpan struct {
+	Line    int
+	EndLine int
+}
+
 // Module describes where a file sits in its language's module system, when
 // the language has one (Java packages, Python packages, Go import paths).
 type Module struct {
@@ -63,6 +69,10 @@ type SourceFile struct {
 	Module       Module
 	Tokens       []Token
 	Imports      []Import
+	// ImportSpans are the lines of import declarations (imports, re-exports,
+	// package imports). Clone detection skips them: files that import the same
+	// modules are not copies of each other.
+	ImportSpans  []LineSpan
 	Measurements []domain.Measurement
 	Diagnostics  []domain.Diagnostic
 }

@@ -45,12 +45,15 @@ type typeReference struct {
 
 // collectImports gathers declared imports plus implicit type references, which
 // let same-package and wildcard-imported dependencies appear in the graph.
-func collectImports(p *parsedFile) []adapter.Import {
+// The spans cover the import declarations only.
+func collectImports(p *parsedFile) ([]adapter.Import, []adapter.LineSpan) {
 	imports := []adapter.Import{}
+	var spans []adapter.LineSpan
 	covered := map[string]bool{}
 	unit, ok := p.tree.(*syntax.CompilationUnitContext)
 	if ok {
 		for _, declaration := range unit.AllImportDeclaration() {
+			spans = append(spans, adapter.LineSpan{Line: lineOf(declaration), EndLine: endLineOf(declaration)})
 			specifier := qualifiedName(declaration.QualifiedName())
 			if declaration.MUL() != nil {
 				specifier += ".*"
@@ -81,7 +84,7 @@ func collectImports(p *parsedFile) []adapter.Import {
 	for _, name := range names {
 		imports = append(imports, adapter.Import{Specifier: name, Line: firstLine[name], Kind: adapter.ImportImplicit})
 	}
-	return imports
+	return imports, spans
 }
 
 // typeReferences returns the type names one node uses: class, catch and created

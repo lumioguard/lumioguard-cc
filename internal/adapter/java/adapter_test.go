@@ -1,6 +1,7 @@
 package java
 
 import (
+	"slices"
 	"strings"
 	"testing"
 
@@ -233,4 +234,11 @@ func contains(items []string, wanted string) bool {
 		}
 	}
 	return false
+}
+
+func TestImportSpansCoverDeclaredImportsOnly(t *testing.T) {
+	spans := Analyze("Spans.java", "/repo/Spans.java", "package sample;\n\nimport java.util.List;\nimport static java.util.Collections.emptyList;\n\npublic class Spans { List<String> names() { return emptyList(); } }\n").ImportSpans
+	if !slices.Equal(spans, []adapter.LineSpan{{Line: 3, EndLine: 3}, {Line: 4, EndLine: 4}}) {
+		t.Fatalf("declared imports, and only those, must be spans, got %v", spans)
+	}
 }

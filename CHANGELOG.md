@@ -14,6 +14,10 @@ need to do.
 
 - `check`, `init`, `doctor`, `explain`, `guide` and `baseline create` commands. `guide` prints
   step-by-step instructions for setup, checking a change, cleanup, the report and configuration.
+- `worklist`, which orders the places to fix for a cleanup: cycles and boundary violations, then
+  functions and files by how many rules they break, with nested functions under their function,
+  then duplicated blocks by size. `--rule`, `--path` and `--top` narrow it; `--format json` gives
+  the same list to tools.
 - Language support for JavaScript, TypeScript, Python 3, Java up to version 17 and Go,
   in one binary with no language runtime needed. Go imports are resolved through the
   project's `go.mod` files.
@@ -23,7 +27,13 @@ need to do.
   advisory `metrics.fileTokens` limit. The summary shows the total and, in a comparison, how
   many tokens the change added or removed.
 - Repository checks: exact token duplication, module fan-in and fan-out,
-  dependency cycles and declared architecture boundaries.
+  dependency cycles and declared architecture boundaries. A copied block is one
+  finding however long it is, identified by the files and functions that hold
+  the copies, with the lines the copies take up as its value. Import
+  declarations never count as copies.
+- Default source exclusions for dependency, build, cache and virtual-environment
+  directories, including the output of Next.js, Nuxt, SvelteKit, Turborepo and
+  Parcel.
 - `--format sarif` on `check`, for GitHub code scanning and other SARIF 2.1.0 readers.
 - A GitHub Action, `lumiostack/lumioguard-cc@vX.Y.Z`, that installs the matching release and
   checks what a pull request made worse.
