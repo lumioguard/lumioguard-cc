@@ -153,7 +153,7 @@ func render(root string, modules []module) ([]byte, error) {
 				continue
 			}
 			fmt.Fprintf(&out, "<details><summary>%s: %s</summary>\n\n```\n%s\n```\n\n</details>\n\n",
-				component.Path, name, strings.TrimRight(string(data), "\n"))
+				component.Path, name, strings.TrimRight(string(lf(data)), "\n"))
 		}
 	}
 
@@ -173,7 +173,7 @@ func licenceOf(dir string) (text string, filename string, err error) {
 	for _, name := range licenceFileNames {
 		data, readErr := os.ReadFile(filepath.Join(dir, name))
 		if readErr == nil {
-			return string(data), name, nil
+			return string(lf(data)), name, nil
 		}
 	}
 	return "", "", fmt.Errorf("no licence file found in %s", dir)
