@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0",
+  "source": {
+    "include": ["src/**/*.c", "src/**/*.h"],
+    "exclude": ["**/build/**", "**/.lumioguard-cc/**"]
+  },
+  "metrics": {
+    "cyclomatic": { "enabled": true, "threshold": 10, "severity": "error", "block": true },
+    "cognitive": { "enabled": true, "threshold": 15, "severity": "error", "block": true },
+    "nestingDepth": { "enabled": true, "threshold": 4, "severity": "error", "block": true },
+    "functionLines": { "enabled": true, "threshold": 60, "severity": "error", "block": true },
+    "parameterCount": { "enabled": true, "threshold": 5, "severity": "error", "block": true },
+    "fileTokens": { "enabled": true, "threshold": 4000, "severity": "warning", "block": false },
+    "duplicationPercent": { "enabled": true, "threshold": 3, "severity": "error", "block": true, "minTokens": 40, "minLines": 5 },
+    "fanOut": { "enabled": true, "threshold": 8, "severity": "warning", "block": false }
+  },
+  "architecture": {
+    "boundaries": [
+      { "name": "domain", "include": ["src/domain/**"], "mayDependOn": ["domain"] },
+      { "name": "persistence", "include": ["src/persistence/**"], "mayDependOn": ["domain", "persistence"] },
+      { "name": "service", "include": ["src/service/**"], "mayDependOn": ["domain", "persistence", "service"] }
+    ],
+    "blockCycles": true,
+    "blockViolations": true
+  },
+  "coverage": { "lcovFile": null, "required": false }
+}

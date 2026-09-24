@@ -1,6 +1,6 @@
 # Worked examples
 
-Three small projects, in TypeScript, Python and Java, each written twice: a
+Five small projects, in TypeScript, Python, Java, C and C++, each written twice: a
 deliberately bad `before/` version and a refactored `after/` version. Every
 number in the reports was produced by running the built binary against the code
 in this directory, not estimated. The Go example is this repository itself; see
@@ -11,8 +11,10 @@ the note at the end.
 | [`typescript-order-service`](typescript-order-service/REPORT.md) | TypeScript | One "god function" that validates, prices, taxes, discounts, ships, saves and emails |
 | [`python-inventory`](python-inventory/REPORT.md) | Python | A warehouse rebalancing routine with five levels of nesting and a copy-pasted report |
 | [`java-billing`](java-billing/REPORT.md) | Java | An invoice calculator whose tax and coupon rules are hard-coded branches |
+| [`c-sensor-pipeline`](c-sensor-pipeline/REPORT.md) | C | A sensor batch processor that calibrates, filters, stores and alerts in one function |
+| [`cpp-shipping-quotes`](cpp-shipping-quotes/REPORT.md) | C++ | A quote service whose carriers, zones and surcharges are nested branches |
 
-Each project exhibits the same seven problems on purpose, so the three reports
+Each project exhibits the same seven problems on purpose, so the five reports
 can be read side by side:
 
 1. A function far over every complexity threshold
@@ -33,11 +35,13 @@ because the shipped defaults are advisory and would only warn.
 | typescript-order-service | 6 → 10 | 258 → 307 | 1660 → 2143 | **10 → 0** |
 | python-inventory | 9 → 10 | 154 → 185 | 1314 → 1549 | **9 → 0** |
 | java-billing | 6 → 12 | 229 → 255 | 1480 → 1981 | **9 → 0** (1 advisory remains) |
+| c-sensor-pipeline | 8 → 14 | 170 → 203 | 978 → 1156 | **9 → 0** |
+| cpp-shipping-quotes | 8 → 12 | 147 → 196 | 898 → 1196 | **9 → 0** |
 
-All 28 blocking findings are gone. The refactors cost about 20% more source
-lines and between 18% and 34% more tokens, spread over roughly twice as many
-functions: named types, records and lookup tables take room that nested branches
-did not. The one advisory finding that remains in the Java example is a real
+All 46 blocking findings are gone. The refactors cost between 11% and 33% more
+source lines and between 18% and 34% more tokens, spread over roughly twice as
+many functions: named types, records and lookup tables take room that nested
+branches did not. The one advisory finding that remains in the Java example is a real
 trade-off, discussed in its report.
 
 ## The examples are real code, not fixtures
@@ -50,6 +54,12 @@ describe code that actually compiles:
 | typescript-order-service | `tsc --noEmit --strict` (TypeScript 5.9.2) | clean | clean |
 | python-inventory | `python -m compileall` (CPython 3.13) | clean | clean |
 | java-billing | `javac` (JDK 17.0.12) | 6 classes | 14 classes |
+| c-sensor-pipeline | `zig cc -std=c11 -Wall -Wextra -Werror` (clang 21.1.0) | clean | clean |
+| cpp-shipping-quotes | `zig c++ -std=c++17 -Wall -Wextra -Werror` (clang 21.1.0) | clean | clean |
+
+The C and C++ refactors were also run against their bad versions with the same
+inputs: 144 sensor batches and 6,912 quotes gave byte-identical output, so the
+lower numbers describe the same behaviour.
 
 One result is worth singling out. The Python `before/` version **cannot be
 imported at all**:
@@ -76,7 +86,7 @@ lumioguard-cc check --root .examples/typescript-order-service/before        # ex
 lumioguard-cc check --root .examples/typescript-order-service/after         # exit 0
 ```
 
-`make examples` runs all three projects, and adds a third step that measures the
+`make examples` runs all five projects, and adds a third step that measures the
 refactor against the bad version. On hosts without make, `sh .examples/run.sh`
 does the same and also asserts the exit codes.
 

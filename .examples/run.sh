@@ -49,7 +49,7 @@ refactored_against_git_base() {
 }
 
 status=0
-for name in typescript-order-service python-inventory java-billing; do
+for name in typescript-order-service python-inventory java-billing c-sensor-pipeline cpp-shipping-quotes; do
     printf '=== %s: before ===\n' "$name"
     "$BINARY" check --root ".examples/$name/before"
     before=$?
