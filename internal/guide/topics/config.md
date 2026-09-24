@@ -9,7 +9,8 @@ edit.
   "schemaVersion": "1.0",
   "source": {
     "include": ["**/*.js", "**/*.jsx", "**/*.mjs", "**/*.cjs", "**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts",
-                "**/*.py", "**/*.pyw", "**/*.java", "**/*.go"],
+                "**/*.py", "**/*.pyw", "**/*.java", "**/*.go", "**/*.c", "**/*.h", "**/*.cc",
+                "**/*.cpp", "**/*.cxx", "**/*.c++", "**/*.hh", "**/*.hpp", "**/*.hxx", "**/*.h++"],
     "exclude": ["**/node_modules/**", "**/dist/**", "**/build/**", "**/out/**", "**/coverage/**",
                 "**/.git/**", "**/.lumioguard-cc/**", "**/*.min.js", "**/*.generated.*",
                 "**/.next/**", "**/.nuxt/**", "**/.output/**", "**/.svelte-kit/**", "**/.turbo/**",

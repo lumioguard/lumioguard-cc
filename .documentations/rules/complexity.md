@@ -5,7 +5,7 @@ description: Cyclomatic complexity, cognitive complexity and nesting depth, with
 # Complexity
 
 Three rules measure how complicated a function's control flow is. They share one implementation for
-every language, so a value of 7 means the same thing in TypeScript, Python, Java and Go.
+every language, so a value of 7 means the same thing in TypeScript, Python, Java, Go, C and C++.
 
 <div class="lg-summary" markdown>
 
@@ -118,16 +118,21 @@ Start with the lines that carry the deepest nesting. The JSON report's `evidence
 
 ## Language notes
 
-| Construct | JavaScript and TypeScript | Python | Java | Go |
-| --- | --- | --- | --- | --- |
-| Else-if | `else if` | `elif` | `else if` | `else if` |
-| Conditional | `a ? b : c` | `b if a else c` | `a ? b : c` | none |
-| Switch | `switch`, `case`, `default` | `match`, `case`, `case _:` as default | `switch` statements and expressions; each `case` label counts | `switch`, type `switch` and `select`; each clause counts once, `default` never |
-| Loop | `for`, `for-in`, `for-of`, `while`, `do-while` | `for`, `async for`, `while`; a loop's `else` adds 1 cognitive | `for`, enhanced `for`, `while`, `do-while` | `for`, `for range` |
-| Catch | `catch` | each `except` or `except*` | each `catch`; a multi-catch is one | none |
-| Labelled jump | `break label`, `continue label` | none | `break label`, `continue label` | `break label`, `continue label`, `goto` |
-| Logical operators | `&&`, `\|\|`, and `??` for cyclomatic only | `and`, `or` | `&&`, `\|\|` | `&&`, `\|\|` |
+| Construct | JavaScript and TypeScript | Python | Java | Go | C and C++ |
+| --- | --- | --- | --- | --- | --- |
+| Else-if | `else if` | `elif` | `else if` | `else if` | `else if` |
+| Conditional | `a ? b : c` | `b if a else c` | `a ? b : c` | none | `a ? b : c`, and GNU `a ?: b` |
+| Switch | `switch`, `case`, `default` | `match`, `case`, `case _:` as default | `switch` statements and expressions; each `case` label counts | `switch`, type `switch` and `select`; each clause counts once, `default` never | `switch`; each `case` label counts |
+| Loop | `for`, `for-in`, `for-of`, `while`, `do-while` | `for`, `async for`, `while`; a loop's `else` adds 1 cognitive | `for`, enhanced `for`, `while`, `do-while` | `for`, `for range` | `for`, range `for`, `while`, `do-while` |
+| Catch | `catch` | each `except` or `except*` | each `catch`; a multi-catch is one | none | each `catch`, and MSVC `__except` |
+| Labelled jump | `break label`, `continue label` | none | `break label`, `continue label` | `break label`, `continue label`, `goto` | `goto` |
+| Logical operators | `&&`, `\|\|`, and `??` for cyclomatic only | `and`, `or` | `&&`, `\|\|` | `&&`, `\|\|` | `&&`, `\|\|`, and `and`, `or` in C++ files |
 
 Python f-strings are read as one piece, so conditions inside `{...}` are not counted. In Go, a
 function literal is measured on its own and also raises the nesting of the function that holds it, like
 a nested function in any other language.
+
+In C and C++, `if constexpr` counts as an `if`, and a lambda is measured on its own like a nested
+function. `&&` in a reference declaration, such as `auto&& x` or `T&& x = f()`, is not a condition
+and is not counted. A macro followed by a block and then `else` counts as an `if`, because only an
+`if` takes an `else`; any other macro followed by a block counts nothing for the macro itself.

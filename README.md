@@ -48,7 +48,7 @@ flowchart LR
 ```
 
 - Every language is translated into one shared model, so a complexity of 7 means
-  the same thing in TypeScript, Python, Java and Go.
+  the same thing in TypeScript, Python, Java, Go, C and C++.
 - Thresholds turn numbers into findings. You choose the thresholds, and whether
   each one only warns or can fail the check.
 - If a file cannot be analyzed, the result is **incomplete**, never passed.
@@ -129,7 +129,7 @@ request only on what the pull request made worse:
 - uses: actions/checkout@v4
   with:
     fetch-depth: 0            # the comparison needs the target branch
-- uses: lumioguard/lumioguard-cc@v0.1.0
+- uses: lumioguard/lumioguard-cc@v0.2.0
 ```
 
 Add `sarif-file: lumioguard-cc.sarif` and upload the file with
@@ -178,6 +178,7 @@ See [Results and report](.documentations/reference/results.md#exit-codes).
 | Python 3 | `.py .pyw` | Written for this tool, tested against the CPython standard library |
 | Java up to 17 | `.java` | Generated from the community ANTLR grammar |
 | Go | `.go` | The Go standard library's parser |
+| C and C++ | `.c .h .cc .cpp .cxx .c++ .hh .hpp .hxx .h++` | Written for this tool, tested on ten open-source C and C++ projects |
 
 A repository with several languages is checked in one run. The tool is written
 in Go and checks its own code with the root `.lumioguard-cc.json`.
@@ -192,6 +193,8 @@ badly and then fixed. Every number in their reports came from running the tool.
 | [TypeScript order service](.examples/typescript-order-service/REPORT.md) | 10 → 0 |
 | [Python inventory](.examples/python-inventory/REPORT.md) | 9 → 0 |
 | [Java billing](.examples/java-billing/REPORT.md) | 9 → 0 |
+| [C sensor pipeline](.examples/c-sensor-pipeline/REPORT.md) | 9 → 0 |
+| [C++ shipping quotes](.examples/cpp-shipping-quotes/REPORT.md) | 9 → 0 |
 
 ```bash
 sh .examples/run.sh bin/lumioguard-cc
@@ -252,7 +255,7 @@ The code is organised so dependencies point inwards:
 flowchart TD
     CLI["Command line"] --> APP["Use cases<br/>check, baseline, hook"]
     APP --> ENGINE["Engine"]
-    ENGINE --> ADAPTERS["Language adapters<br/>TypeScript, Python, Java, Go"]
+    ENGINE --> ADAPTERS["Language adapters<br/>TypeScript, Python, Java, Go, C and C++"]
     ENGINE --> ANALYSIS["Cross-file analysis<br/>graph, duplication, coverage"]
     ADAPTERS --> STRUCTURE["Shared model<br/>and complexity rules"]
     ANALYSIS --> DOMAIN["Domain<br/>measurements and findings"]

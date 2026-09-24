@@ -27,12 +27,12 @@ the file for your computer:
 Each release also has a `SHA256SUMS` file. Checking the download against it confirms the file arrived
 complete and unchanged.
 
-The commands below use version `0.1.0`. Replace it with the latest version on the releases page.
+The commands below use version `0.2.0`. Replace it with the latest version on the releases page.
 
 === "macOS and Linux"
 
     ```bash
-    VERSION=0.1.0
+    VERSION=0.2.0
     NAME=lumioguard-cc_${VERSION}_linux_amd64        # pick your file from the table
     BASE=https://github.com/lumioguard/lumioguard-cc/releases/download/v${VERSION}
 
@@ -54,7 +54,7 @@ The commands below use version `0.1.0`. Replace it with the latest version on th
     Run in PowerShell:
 
     ```powershell
-    $Version = "0.1.0"
+    $Version = "0.2.0"
     $Name = "lumioguard-cc_${Version}_windows_amd64"
     $Base = "https://github.com/lumioguard/lumioguard-cc/releases/download/v$Version"
 
@@ -97,7 +97,7 @@ The commands below use version `0.1.0`. Replace it with the latest version on th
 lumioguard-cc --version
 ```
 
-It prints the version number, such as `0.1.0`.
+It prints the version number, such as `0.2.0`.
 
 ## Next step
 

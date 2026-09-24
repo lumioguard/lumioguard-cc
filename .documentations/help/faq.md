@@ -19,7 +19,7 @@ description: Common questions about lumioguard CC.
     wrote.
 
 ??? question "Which languages does it support?"
-    JavaScript, TypeScript, Python 3, Java up to 17 and Go, including projects that mix them. See
+    JavaScript, TypeScript, Python 3, Java up to 17, Go, C and C++, including projects that mix them. See
     [Languages and limits](../reference/languages.md).
 
 ??? question "Do I need Node.js, Python, Java or Go installed?"

@@ -60,7 +60,7 @@ shows where its number comes from. More techniques: `lumioguard-cc guide cleanup
 
 | Problem | Fix |
 | --- | --- |
-| `*.parse_failed` | The file is not valid code: fix syntax you wrote. JSX needs `.jsx` or `.tsx`. Only Python 3 is supported. |
+| `*.parse_failed` | The file is not valid code: fix syntax you wrote. JSX needs `.jsx` or `.tsx`. Only Python 3 is supported. In C and C++, only the first branch of each `#if` is read; K&R definitions and Objective-C are not supported, so exclude those files. |
 | `adapter.unsupported_language` | `include` matches a file type the tool cannot read; the user should narrow `include` |
 | `baseline.config_incompatible` | The stored baseline was made with another configuration: use `--base` and tell the user; do not replace the baseline |
 | `coverage.report_unavailable`, `coverage.report_stale` | Rerun the tests with coverage, or ask whether coverage should be `required` |

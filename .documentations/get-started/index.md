@@ -56,7 +56,7 @@ cheap for agents to work with.
 | Architecture boundaries | Code in one layer reaching into a layer it should not use | [Boundaries](../rules/boundaries.md) |
 | Test coverage | Code your tests do not run, read from your test tool's report | [Coverage](../rules/coverage.md) |
 
-It works on **JavaScript, TypeScript, Python 3, Java** up to version 17 **and Go**, including projects
+It works on **JavaScript, TypeScript, Python 3, Java** up to version 17, **Go, C and C++**, including projects
 that mix them.
 
 ## What it does not do

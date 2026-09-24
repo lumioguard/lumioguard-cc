@@ -3,11 +3,6 @@
 package compose
 
 import (
-	"github.com/lumioguard/lumioguard-cc/internal/adapter"
-	"github.com/lumioguard/lumioguard-cc/internal/adapter/golang"
-	"github.com/lumioguard/lumioguard-cc/internal/adapter/java"
-	"github.com/lumioguard/lumioguard-cc/internal/adapter/python"
-	"github.com/lumioguard/lumioguard-cc/internal/adapter/typescript"
 	"github.com/lumioguard/lumioguard-cc/internal/analysis"
 	"github.com/lumioguard/lumioguard-cc/internal/analysis/coverage"
 	"github.com/lumioguard/lumioguard-cc/internal/analysis/duplication"
@@ -25,11 +20,6 @@ import (
 	"github.com/lumioguard/lumioguard-cc/internal/policy"
 	"github.com/lumioguard/lumioguard-cc/internal/product"
 )
-
-// NewRegistry lists the installed language adapters in priority order.
-func NewRegistry() *adapter.Registry {
-	return adapter.NewRegistry(typescript.New(), python.New(), java.New(), golang.New())
-}
 
 // NewApplication builds the production application graph.
 func NewApplication() *app.Application {

@@ -43,6 +43,13 @@ accurate. Breaking one needs a discussion first.
   parser; `tools/java-grammar-sync` asserts that generated code never calls the runtime's version check.
   Go uses the standard library's `go/parser`, whose behaviour is fixed by the Go release a binary is
   built with; release builds pin that release.
+- **C and C++ without a preprocessor.** A hand-written lexer and parser read the code as written.
+  Of each `#if` group only the first branch is read, or the next one after `#if 0`, because running
+  the preprocessor needs include paths and compiler flags, and would make results depend on the
+  machine. The parser reads declarations only as far as it must to find function bodies, so unknown
+  macros rarely stop it; where one would make it skip declarations, the file fails instead. `.h`
+  counts as C. Includes resolve without include paths, and an include matching two files is
+  unresolved, not guessed.
 - **A Go import points at one file.** Fan-out counts files, and a Go import names a package. The edge
   goes to the package's first non-test file in name order, so fan-out equals the number of packages
   imported instead of growing with the size of each package.
@@ -86,7 +93,7 @@ flowchart TD
     APP --> ENGINE["engine<br/>runs a check"]
     APP --> GIT["git"]
     APP --> BASELINE["baseline store"]
-    ENGINE --> ADAPTERS["language adapters<br/>typescript, python, java, golang"]
+    ENGINE --> ADAPTERS["language adapters<br/>typescript, python, java, golang, cfamily"]
     ADAPTERS --> STRUCTURE["structure<br/>shared model and<br/>complexity metrics"]
     ENGINE --> ANALYSIS["cross-file analysis<br/>graph, duplication, coverage"]
     ENGINE --> POLICY["policy and comparison"]
@@ -102,9 +109,11 @@ flowchart TD
 | `internal/report` | The summary, the JSON report and the SARIF log derived from it |
 | `internal/app` | One service per command, with collaborators behind interfaces in `ports.go` |
 | `internal/engine` | One analysis: discovery, parallel adapters, analyzers, thresholds, ordering, comparison |
-| `internal/adapter` | `LanguageAdapter`, `ImportResolver`, `Registry`, `ModuleIndex`, measurement builder |
+| `internal/adapter` | `LanguageAdapter`, `Descriptor`, `ImportResolver`, `Registry`, `ModuleIndex`, measurement builder |
+| `internal/adapter/measure` | Turns a `structure` function into the five function measurements |
+| `internal/adapter/adaptertest` | Assertions shared by adapter tests |
 | `internal/adapter/structure` | Shared control-flow model and the only complexity implementation |
-| `internal/adapter/{typescript,python,java,golang}` | Parse, translate to `structure`, tokens, imports, resolver |
+| `internal/adapter/{typescript,python,java,golang,cfamily}` | Parse, translate to `structure`, tokens, imports, resolver |
 | `internal/analysis/{graph,duplication,tokens,coverage}` | Cross-file checks |
 | `internal/domain` | Measurements, findings, reports, config, baselines, exit codes; no I/O |
 | `internal/guide` | The task guides printed by `lumioguard-cc guide` |
@@ -125,11 +134,12 @@ Open an issue first: a language is a long-term commitment that ends up in people
    parser validated on a large corpus. Record copied code in `internal/thirdparty/components.go`.
 2. **Register the extensions** in `internal/language`. That table feeds `Supports`, the default include
    patterns and report counts. Note in `CHANGELOG.md` that the default configuration hash changes.
-3. **Implement `adapter.LanguageAdapter`** in `internal/adapter/<language>`. A syntax error is a required
+3. **Implement `adapter.LanguageAdapter`** in `internal/adapter/<language>`, embedding
+   `adapter.Descriptor` for the identity methods. A syntax error is a required
    diagnostic such as `<language>.parse_failed`, never a partial result.
 4. **Translate functions** into `structure.Function`, call `structure.AssignSymbols`, the `structure`
-   metrics and `sourcetext.CountSourceLines`, then `adapter.FunctionMeasurements`. Never compute
-   complexity in the adapter.
+   metrics and `sourcetext.CountSourceLines`, then `adapter.FunctionMeasurements`; `measure.Function`
+   does all of this. Never compute complexity in the adapter.
 5. **Produce tokens** without comments, and **collect imports** with an `ImportResolver`.
 6. **Wire it** into `compose.NewRegistry` and `tools/parse-corpus`.
 7. **Test it** like the other adapters: the shared reference fixture (`score`: cyclomatic 5, nesting 3,

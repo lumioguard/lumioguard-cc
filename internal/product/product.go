@@ -53,4 +53,4 @@ func RecheckCommandFor(program, baselineName, gitBase string) string {
 
 // Version is the tool version. Release builds may override it with
 // -ldflags "-X github.com/lumioguard/lumioguard-cc/internal/product.Version=x.y.z".
-var Version = "0.1.0"
+var Version = "0.2.0"

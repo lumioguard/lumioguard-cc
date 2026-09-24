@@ -3,12 +3,14 @@ package engine_test
 import (
 	"context"
 	"encoding/json"
+	"maps"
 	"os"
 	"path/filepath"
 	"testing"
 	"time"
 
 	"github.com/lumioguard/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/cfamily"
 	"github.com/lumioguard/lumioguard-cc/internal/adapter/golang"
 	"github.com/lumioguard/lumioguard-cc/internal/adapter/java"
 	"github.com/lumioguard/lumioguard-cc/internal/adapter/python"
@@ -39,7 +41,7 @@ func (fixedIDs) NewRunID() string { return "run-1" }
 func newAnalyzer(opts ...engine.Option) *engine.Analyzer {
 	return engine.New(engine.Dependencies{
 		Tool:       domain.ToolInfo{Name: "test", Version: "0"},
-		Adapters:   adapter.NewRegistry(typescript.New(), python.New(), java.New(), golang.New()),
+		Adapters:   adapter.NewRegistry(typescript.New(), python.New(), java.New(), golang.New(), cfamily.New()),
 		Discoverer: discovery.NewWalker(),
 		Repository: []analysis.RepositoryAnalyzer{graph.New("recheck"), duplication.New("recheck"), tokens.New(), coverage.New()},
 		Git:        git.NewClient(),
@@ -112,18 +114,23 @@ func TestMixedLanguageRepositoryIsAnalyzedInOneInvocation(t *testing.T) {
 	write(t, root, "go.mod", "module example.com/mixed\n\ngo 1.27\n")
 	write(t, root, "cmd/run.go", "package main\n\nimport \"example.com/mixed/lib\"\n\nfunc Run(x int) int {\n\tif x > 0 {\n\t\treturn lib.One()\n\t}\n\treturn 0\n}\n")
 	write(t, root, "lib/lib.go", "package lib\n\nfunc One() int { return 1 }\n")
+	// <shape.h> has no directory, so it is taken for a system header and stays external.
+	write(t, root, "native/include/shape.h", "#pragma once\nint area(int w, int h);\n")
+	write(t, root, "native/src/shape.c", "#include <shape.h>\n\nint area(int w, int h) { return w > 0 && h > 0 ? w * h : 0; }\n")
+	write(t, root, "native/src/main.cpp", "#include \"../include/shape.h\"\n#include <cstdio>\n\nint main() { return area(2, 3); }\n")
 	report, err := newAnalyzer().Analyze(context.Background(), engine.Request{Root: root, Config: config.Default()})
 	if err != nil {
 		t.Fatal(err)
 	}
-	if report.Scope.FilesDiscovered != 9 || report.Scope.FilesAnalyzed != 9 {
+	if report.Scope.FilesDiscovered != 12 || report.Scope.FilesAnalyzed != 12 {
 		t.Fatalf("unexpected scope %+v", report.Scope)
 	}
-	if report.Scope.Languages["TypeScript"] != 2 || report.Scope.Languages["Python"] != 3 || report.Scope.Languages["Java"] != 2 || report.Scope.Languages["Go"] != 2 {
-		t.Fatalf("unexpected language counts %+v", report.Scope.Languages)
+	wantLanguages := map[string]int{"TypeScript": 2, "Python": 3, "Java": 2, "Go": 2, "C": 2, "C++": 1}
+	if !maps.Equal(report.Scope.Languages, wantLanguages) {
+		t.Fatalf("language counts %+v, want %+v", report.Scope.Languages, wantLanguages)
 	}
-	if len(report.Adapters) != 4 {
-		t.Fatalf("expected four adapters, got %+v", report.Adapters)
+	if len(report.Adapters) != 5 {
+		t.Fatalf("expected five adapters, got %+v", report.Adapters)
 	}
 	for _, summary := range report.Adapters {
 		if !summary.Complete {
@@ -143,12 +150,14 @@ func TestMixedLanguageRepositoryIsAnalyzedInOneInvocation(t *testing.T) {
 			symbols[m.Scope.Key] = true
 		}
 	}
-	for file, want := range map[string]float64{"web/app.ts": 1, "svc/pkg/core.py": 1, "api/src/main/java/com/acme/App.java": 1, "cmd/run.go": 1} {
+	for file, want := range map[string]float64{"web/app.ts": 1, "svc/pkg/core.py": 1, "api/src/main/java/com/acme/App.java": 1, "cmd/run.go": 1,
+		"native/src/shape.c": 0, "native/src/main.cpp": 1} {
 		if fanOut[file] != want {
 			t.Errorf("fan-out %s = %v, want %v", file, fanOut[file], want)
 		}
 	}
-	for _, key := range []string{"web/app.ts::run", "svc/pkg/core.py::work", "api/src/main/java/com/acme/App.java::App.go", "cmd/run.go::Run"} {
+	for _, key := range []string{"web/app.ts::run", "svc/pkg/core.py::work", "api/src/main/java/com/acme/App.java::App.go", "cmd/run.go::Run",
+		"native/src/shape.c::area", "native/src/main.cpp::main"} {
 		if !symbols[key] {
 			t.Errorf("missing function scope %s", key)
 		}

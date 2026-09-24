@@ -45,7 +45,8 @@ Length is a hint, not a verdict: a long table of data is long without being comp
 
 Each declared parameter counts once, whatever its form: default values, rest and destructured
 parameters, Python `*args`, `**kwargs`, keyword-only parameters, `self` and `cls`, and TypeScript's
-explicit `this`. In Go, `(a, b int)` counts two and a variadic parameter counts one. Java and Go
+explicit `this`. In Go, `(a, b int)` counts two and a variadic parameter counts one. In C,
+`(void)` counts none, and in C and C++ `...` counts one. Java and Go
 receivers do not count.
 
 Passing one object with ten fields counts as 1.
