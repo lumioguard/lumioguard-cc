@@ -8,7 +8,7 @@ While the version is below 1.0, a minor release may change measurements or the
 report format. Such changes are always listed under **Changed**, with what users
 need to do.
 
-## Unreleased
+## 0.2.0 - 2026-09-24
 
 ### Added
 

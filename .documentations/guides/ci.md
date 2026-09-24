@@ -37,7 +37,7 @@ jobs:
         with:
           fetch-depth: 0            # the comparison needs the target branch
 
-      - uses: lumioguard/lumioguard-cc@v0.1.0
+      - uses: lumioguard/lumioguard-cc@v0.2.0
 ```
 
 On a pull request the action compares with the target branch. The summary appears in the job log, and
@@ -45,7 +45,7 @@ the job fails when a blocking finding is new or worse.
 
 | Input | Default | Meaning |
 | --- | --- | --- |
-| `version` | The action's tag | Release to install, such as `0.1.0` |
+| `version` | The action's tag | Release to install, such as `0.2.0` |
 | `base` | The pull request's target branch | Git reference to compare with. Empty on other events, which checks the whole project. |
 | `working-directory` | `.` | Folder that holds `.lumioguard-cc.json` |
 | `sarif-file` | none | Write the findings as SARIF to this path instead of printing the summary |
@@ -72,7 +72,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: lumioguard/lumioguard-cc@v0.1.0
+      - uses: lumioguard/lumioguard-cc@v0.2.0
         with:
           sarif-file: lumioguard-cc.sarif
 
@@ -93,7 +93,7 @@ version so that an upgrade never changes results unnoticed:
 ```yaml
       - name: Install lumioguard CC
         env:
-          VERSION: 0.1.0
+          VERSION: 0.2.0
         run: |
           NAME="lumioguard-cc_${VERSION}_linux_amd64"
           BASE="https://github.com/lumioguard/lumioguard-cc/releases/download/v$VERSION"

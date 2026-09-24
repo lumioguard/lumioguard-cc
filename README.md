@@ -129,7 +129,7 @@ request only on what the pull request made worse:
 - uses: actions/checkout@v4
   with:
     fetch-depth: 0            # the comparison needs the target branch
-- uses: lumioguard/lumioguard-cc@v0.1.0
+- uses: lumioguard/lumioguard-cc@v0.2.0
 ```
 
 Add `sarif-file: lumioguard-cc.sarif` and upload the file with

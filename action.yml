@@ -9,8 +9,8 @@ branding:
 inputs:
   version:
     description: >-
-      Release to install, such as 0.1.0. Defaults to the tag this action was referenced with,
-      so `uses: lumioguard/lumioguard-cc@v0.1.0` installs 0.1.0.
+      Release to install, such as 0.2.0. Defaults to the tag this action was referenced with,
+      so `uses: lumioguard/lumioguard-cc@v0.2.0` installs 0.2.0.
     required: false
     default: ""
   base:
@@ -54,7 +54,7 @@ runs:
           case "$ACTION_REF" in
             v[0-9]*) version="${ACTION_REF#v}" ;;
             *)
-              echo "::error::Set the 'version' input, or reference this action by a release tag such as lumioguard/lumioguard-cc@v0.1.0 (got '$ACTION_REF')"
+              echo "::error::Set the 'version' input, or reference this action by a release tag such as lumioguard/lumioguard-cc@v0.2.0 (got '$ACTION_REF')"
               exit 2 ;;
           esac
         fi
