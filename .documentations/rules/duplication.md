@@ -47,6 +47,8 @@ complexity rules.
 - In JavaScript and TypeScript, a regular expression, a template string or a piece of JSX text is one
   token.
 - In Go, the semicolon the compiler inserts at a line end is one token, the same as a written `;`.
+- In C and C++, preprocessor lines are tokens too, so a copied `#define` is a copy. Code in an `#if`
+  branch that is not read has no tokens.
 
 Not every copy is a mistake. Two blocks can look alike today and still need to change for different
 reasons.

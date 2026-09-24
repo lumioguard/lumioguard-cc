@@ -148,7 +148,7 @@ makes the result incomplete.
 
 | Diagnostic | Meaning |
 | --- | --- |
-| `typescript.parse_failed`, `python.parse_failed`, `java.parse_failed`, `go.parse_failed` | A file is not valid code |
+| `typescript.parse_failed`, `python.parse_failed`, `java.parse_failed`, `go.parse_failed`, `cfamily.parse_failed` | A file is not valid code |
 | `adapter.unsupported_language` | A file matched `include`, but no language analyzer supports it |
 | `dependency.import_unresolved` | An import looks internal, but matches no file |
 | `dependency.external_not_analyzed` | How many imports pointed outside the analyzed code |

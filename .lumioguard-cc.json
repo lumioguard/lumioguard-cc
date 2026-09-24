@@ -34,8 +34,10 @@
       { "name": "python", "include": ["internal/adapter/python/**"], "mayDependOn": ["domain", "structure", "adapter", "python"] },
       { "name": "java", "include": ["internal/adapter/java/**"], "mayDependOn": ["domain", "structure", "adapter", "java"] },
       { "name": "go", "include": ["internal/adapter/golang/**"], "mayDependOn": ["domain", "structure", "adapter", "go"] },
+      { "name": "cfamily", "include": ["internal/adapter/cfamily/**"], "mayDependOn": ["domain", "structure", "adapter", "measure", "cfamily"] },
+      { "name": "measure", "include": ["internal/adapter/measure/**"], "mayDependOn": ["domain", "structure", "adapter", "measure"] },
       { "name": "adapter", "include": ["internal/adapter/**"], "mayDependOn": ["domain", "adapter"] },
-      { "name": "engine", "include": ["internal/engine/**"], "mayDependOn": ["domain", "adapter", "typescript", "python", "java", "go", "engine"] }
+      { "name": "engine", "include": ["internal/engine/**"], "mayDependOn": ["domain", "adapter", "typescript", "python", "java", "go", "cfamily", "engine"] }
     ],
     "blockCycles": true,
     "blockViolations": true

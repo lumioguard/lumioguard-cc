@@ -25,11 +25,14 @@ var (
 	Python     = Language{Name: "Python", Extensions: []string{".py", ".pyw"}}
 	Java       = Language{Name: "Java", Extensions: []string{".java"}}
 	Go         = Language{Name: "Go", Extensions: []string{".go"}}
+	// C claims .h, so a header counts as C whichever language includes it.
+	C         = Language{Name: "C", Extensions: []string{".c", ".h"}}
+	CPlusPlus = Language{Name: "C++", Extensions: []string{".cc", ".cpp", ".cxx", ".c++", ".hh", ".hpp", ".hxx", ".h++"}}
 )
 
 // All returns every language in a stable order.
 func All() []Language {
-	return []Language{JavaScript, TypeScript, Python, Java, Go}
+	return []Language{JavaScript, TypeScript, Python, Java, Go, C, CPlusPlus}
 }
 
 // ExtensionSet builds the lookup an adapter uses for Supports.

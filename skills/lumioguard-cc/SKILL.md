@@ -1,6 +1,6 @@
 ---
 name: lumioguard-cc
-description: Install and use lumioguard CC (the lumioguard-cc CLI), which measures complexity, size, duplication, dependency cycles and layer violations in JavaScript, TypeScript, Python, Java and Go, and fails only on what a change made worse. Use it when the user asks to install or set up lumioguard or lumioguard-cc, wants a technical-debt, complexity or architecture check, or asks to clean up, simplify or refactor a codebase; when a repository has .lumioguard-cc.json; when a lumioguard-cc hook blocks you; and before declaring any code change finished in a project that uses it.
+description: Install and use lumioguard CC (the lumioguard-cc CLI), which measures complexity, size, duplication, dependency cycles and layer violations in JavaScript, TypeScript, Python, Java, Go, C and C++, and fails only on what a change made worse. Use it when the user asks to install or set up lumioguard or lumioguard-cc, wants a technical-debt, complexity or architecture check, or asks to clean up, simplify or refactor a codebase; when a repository has .lumioguard-cc.json; when a lumioguard-cc hook blocks you; and before declaring any code change finished in a project that uses it.
 compatibility: Needs a shell and Git. Installing needs network access to the GitHub releases page, or Go 1.27 or later.
 ---
 

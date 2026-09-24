@@ -4,7 +4,7 @@ Goal: a reviewed `.lumioguard-cc.json`, the current numbers reported to the user
 wants it, agents and CI that check their own changes.
 
 1. **Work from the repository root** (`git rev-parse --show-toplevel`). Supported languages:
-   JavaScript, TypeScript, Python 3, Java up to 17 and Go. If the project has none, stop.
+   JavaScript, TypeScript, Python 3, Java up to 17, Go, C and C++. If the project has none, stop.
 
 2. **Create the configuration:**
 

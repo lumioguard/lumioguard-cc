@@ -20,6 +20,7 @@ import (
 	"time"
 
 	"github.com/lumioguard/lumioguard-cc/internal/adapter"
+	"github.com/lumioguard/lumioguard-cc/internal/adapter/cfamily"
 	"github.com/lumioguard/lumioguard-cc/internal/adapter/golang"
 	"github.com/lumioguard/lumioguard-cc/internal/adapter/java"
 	"github.com/lumioguard/lumioguard-cc/internal/adapter/python"
@@ -64,7 +65,7 @@ type functionKey struct {
 }
 
 func main() {
-	language := flag.String("lang", "python", "python, java, typescript or go")
+	language := flag.String("lang", "python", "python, java, typescript, go or cfamily")
 	directory := flag.String("dir", "", "directory to scan")
 	limit := flag.Int("limit", 0, "maximum number of files (0 = all)")
 	pythonExe := flag.String("python", "", "python executable for a differential check of function boundaries")
@@ -90,6 +91,8 @@ func adapterFor(language string) (adapter.LanguageAdapter, error) {
 		return typescript.New(), nil
 	case "go":
 		return golang.New(), nil
+	case "cfamily":
+		return cfamily.New(), nil
 	default:
 		return nil, fmt.Errorf("unknown language %q", language)
 	}

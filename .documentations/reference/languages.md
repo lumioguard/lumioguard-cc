@@ -12,9 +12,10 @@ description: Supported languages and file types, and the limits of what a check 
 | Python 3 | `.py .pyw` | Written for this tool, tested against the CPython 3.13 standard library |
 | Java up to 17 | `.java` | Generated from the community ANTLR Java grammar |
 | Go | `.go` | The Go standard library's `go/parser`, as built into the release |
+| C and C++ | C: `.c .h`; C++: `.cc .cpp .cxx .c++ .hh .hpp .hxx .h++` | Written for this tool, tested on ten open-source C and C++ projects |
 
-All four parsers are compiled into the one program. You do not need Node.js, Python, Java or Go
-installed. A project that mixes languages is checked in one run.
+All five parsers are compiled into the one program. You do not need Node.js, Python, Java, Go or a
+C compiler installed. A project that mixes languages is checked in one run.
 
 ## Limits by language
 
@@ -24,6 +25,7 @@ installed. A project that mixes languages is checked in one run.
 | Python | Python 3 only. Code inside f-string fields is not analyzed. `sys.path` changes, namespace packages and installed packages are not modelled. `.pyi` files are skipped. |
 | Java | Java 17 grammar, so newer syntax may fail to parse. Types seen only through `var` or reflection are missed. Initializer blocks, implicit record constructors and method references are not measured. The Java parser is slower than the others. |
 | Go | Imports are resolved through `go.mod` files inside the analyzed folder; without one, every import is external. `go.work` files, build tags and cgo are not modelled. An import of a package becomes a dependency on the package's first non-test file in name order. Assembly-backed functions without a body are not measured. |
+| C and C++ | The preprocessor is not run. Of each `#if`, `#ifdef` or `#ifndef` group only the first branch is read, or the next one after `#if 0`, so code in `#else` branches is not measured. Macros are not expanded: a function defined through a macro, such as `TEST(Suite, Name) { ... }`, is measured under the macro's name, and a macro that hides a brace or a whole declaration can make the file fail to parse. `.h` files count as C; `and` and `or` are operators only in C++ files. K&R-style definitions and Objective-C are not supported: exclude those files. Includes are resolved without include paths, see [Dependencies](../rules/dependencies.md#how-imports-are-found). |
 
 ## What a check does not prove
 

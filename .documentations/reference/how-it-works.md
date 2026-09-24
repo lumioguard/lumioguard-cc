@@ -11,7 +11,7 @@ description: The steps of a check, from reading files to the exit code.
 2. **Parse.** Each file goes to the parser for its language. Files are parsed in parallel, but results
    always come out in the same order.
 3. **Translate.** Every language is translated into one shared model of functions and their control
-   flow. This is why a value of 7 means the same in TypeScript, Python, Java and Go.
+   flow. This is why a value of 7 means the same in TypeScript, Python, Java, Go, C and C++.
 4. **Measure functions.** Complexity and size are computed once, from the shared model.
 5. **Measure across files.** Token streams are searched for copies, imports are traced into a
    dependency graph, and an LCOV report is read if one is configured.

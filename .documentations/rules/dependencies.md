@@ -38,6 +38,8 @@ which imports `order.ts`.
 - In Python, a cycle can stop the program from starting.
 - In Go, the compiler rejects import cycles between packages, so this rule only reports what the
   compiler would refuse anyway.
+- In C and C++, two headers that include each other form a cycle even when include guards stop the
+  compiler from looping.
 - Every group of files that reach each other is reported once. A file that imports itself is not
   reported.
 - Cycles block by default, through `architecture.blockCycles`.
@@ -62,7 +64,8 @@ Each import is sorted into one of three kinds:
 | JavaScript and TypeScript | Relative paths, trying `.ts .tsx .js .jsx .mjs .cjs` and `index` files, and mapping `.js` to `.ts` | Package names and `tsconfig` path aliases | A relative path with no matching file |
 | Python | Relative imports; absolute imports of packages in the analyzed code, including `src` layouts; literal `importlib.import_module` calls | Packages that are not analyzed | A relative import with no match, or a missing module in an analyzed package |
 | Java | Classes from package declarations, single and wildcard imports, and type names used from the same package | Wildcard imports themselves, and packages that are not analyzed | A single-class import into an analyzed package where the class does not exist |
+| C and C++ | `#include "x"` next to the including file; then, as through an include path, `x` from the project root, or the one analyzed file whose path ends in `x` | `#include <x>` where `x` has no directory, such as `<stdio.h>`, and any include that matches no analyzed file | An include that matches more than one analyzed file, such as `"config.h"` in two folders |
 | Go | Import paths under a module declared by a `go.mod` inside the project. A package import becomes a dependency on the package's first non-test file in name order, so fan-out counts packages | The standard library and modules that are not analyzed | An import path inside an analyzed module that matches no analyzed package |
 
-Computed import paths, `sys.path` changes, monorepo workspaces, `go.work` files, and Java types used
+Computed import paths and includes such as `#include CONFIG_HEADER`, `sys.path` changes, monorepo workspaces, `go.work` files, and Java types used
 only through `var` or reflection are not followed.

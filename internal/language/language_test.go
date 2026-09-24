@@ -29,7 +29,8 @@ func TestNameForIsCaseInsensitiveAndFailsClosed(t *testing.T) {
 		"a.js": "JavaScript", "a.cjs": "JavaScript",
 		"a.py": "Python", "a.PYW": "Python",
 		"A.java": "Java",
-		"a.rs":   Unknown, "a": Unknown,
+		"a.c":    "C", "a.H": "C", "a.cpp": "C++", "a.c++": "C++", "a.hpp": "C++", "a.CC": "C++",
+		"a.rs": Unknown, "a": Unknown,
 	}
 	for filename, want := range cases {
 		if got := NameFor(filename); got != want {

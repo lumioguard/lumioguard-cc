@@ -22,7 +22,7 @@ An incomplete result never shows a `Source tokens` total, because not everything
 
 | Diagnostic | Fix |
 | --- | --- |
-| `typescript.parse_failed`, `python.parse_failed`, `java.parse_failed`, `go.parse_failed` | See [A file cannot be parsed](#a-file-cannot-be-parsed) |
+| `typescript.parse_failed`, `python.parse_failed`, `java.parse_failed`, `go.parse_failed`, `cfamily.parse_failed` | See [A file cannot be parsed](#a-file-cannot-be-parsed) |
 | `adapter.unsupported_language` | `include` matches a file type the tool cannot read. Narrow `source.include` to supported types. |
 | `coverage.report_unavailable`, `coverage.report_stale` | Run the tests with coverage again, or set `coverage.required` to `false` |
 | `baseline.config_incompatible` and other `baseline.*` | See [The stored baseline no longer matches](#the-stored-baseline-no-longer-matches) |
@@ -39,6 +39,10 @@ An incomplete result never shows a `Source tokens` total, because not everything
 - **Java newer than 17:** the Java grammar covers Java 17. Newer syntax can fail to parse.
 - **Go:** the message names the line and what the parser expected. Generated files that are not
   valid Go, such as templates with a `.go` extension, need an `exclude` entry.
+- **C and C++:** the preprocessor is not run, so a macro that hides a brace or a declaration can
+  stop the parser. `unrecognised declaration from line N` points at such a macro: the tool fails the
+  file rather than skip the functions inside it. K&R-style definitions and Objective-C headers are
+  not supported; exclude those files, such as with `"**/ios/**"`.
 
 ## The configuration is invalid
 
